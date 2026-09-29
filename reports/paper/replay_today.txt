@@ -1,0 +1,1 @@
+replay 2026-09-29 03:40:00+00:00 -> 2026-09-29 18:25:00+00:00: signals=3, no-panel trades=2 avgR=-0.554, panel trades=2 avgR=-0.554
