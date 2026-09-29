@@ -23,3 +23,47 @@ ERROR ReadTimeout HTTPSConnectionPool(host='api.typesafe.ai', port=443): Read ti
   labelled 6500/26324  11.5/s  stats={'calls': 6481, 'cache_hits': 21, 'input_tokens': 7951841, 'cost_usd': 0.334}
   labelled 7000/26324  11.5/s  stats={'calls': 6979, 'cache_hits': 21, 'input_tokens': 8564470, 'cost_usd': 0.3597}
   labelled 7500/26324  11.6/s  stats={'calls': 7478, 'cache_hits': 24, 'input_tokens': 9178677, 'cost_usd': 0.3855}
+  labelled 8000/26324  11.6/s  stats={'calls': 7977, 'cache_hits': 25, 'input_tokens': 9793158, 'cost_usd': 0.4113}
+  labelled 8500/26324  11.6/s  stats={'calls': 8475, 'cache_hits': 25, 'input_tokens': 10406293, 'cost_usd': 0.4371}
+  labelled 9000/26324  11.7/s  stats={'calls': 8977, 'cache_hits': 27, 'input_tokens': 11022807, 'cost_usd': 0.463}
+  labelled 9500/26324  11.7/s  stats={'calls': 9473, 'cache_hits': 28, 'input_tokens': 11628752, 'cost_usd': 0.4884}
+  labelled 10000/26324  11.7/s  stats={'calls': 9974, 'cache_hits': 29, 'input_tokens': 12241037, 'cost_usd': 0.5141}
+  labelled 10500/26324  11.7/s  stats={'calls': 10471, 'cache_hits': 32, 'input_tokens': 12848347, 'cost_usd': 0.5396}
+  labelled 11000/26324  11.7/s  stats={'calls': 10970, 'cache_hits': 34, 'input_tokens': 13458555, 'cost_usd': 0.5653}
+  labelled 11500/26324  11.7/s  stats={'calls': 11464, 'cache_hits': 38, 'input_tokens': 14061898, 'cost_usd': 0.5906}
+ERROR ProxyError HTTPSConnectionPool(host='api.typesafe.ai', port=443): Max retries exceeded with url: /v1/systemone (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 502 Bad Gateway')))
+  labelled 12000/26324  11.8/s  stats={'calls': 11952, 'cache_hits': 50, 'input_tokens': 14657930, 'cost_usd': 0.6156}
+  labelled 12500/26324  11.8/s  stats={'calls': 12448, 'cache_hits': 55, 'input_tokens': 15263697, 'cost_usd': 0.6411}
+  labelled 13000/26324  11.8/s  stats={'calls': 12949, 'cache_hits': 55, 'input_tokens': 15878216, 'cost_usd': 0.6669}
+  labelled 13500/26324  11.8/s  stats={'calls': 13446, 'cache_hits': 56, 'input_tokens': 16489078, 'cost_usd': 0.6925}
+  labelled 14000/26324  11.8/s  stats={'calls': 13945, 'cache_hits': 57, 'input_tokens': 17104542, 'cost_usd': 0.7184}
+  labelled 14500/26324  11.8/s  stats={'calls': 14441, 'cache_hits': 59, 'input_tokens': 17716521, 'cost_usd': 0.7441}
+  labelled 15000/26324  11.9/s  stats={'calls': 14943, 'cache_hits': 60, 'input_tokens': 18336101, 'cost_usd': 0.7701}
+ERROR ProxyError HTTPSConnectionPool(host='api.typesafe.ai', port=443): Max retries exceeded with url: /v1/systemone (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 502 Bad Gateway')))
+ERROR ProxyError HTTPSConnectionPool(host='api.typesafe.ai', port=443): Max retries exceeded with url: /v1/systemone (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 502 Bad Gateway')))
+  labelled 15500/26324  11.9/s  stats={'calls': 15439, 'cache_hits': 63, 'input_tokens': 18943778, 'cost_usd': 0.7956}
+  labelled 16000/26324  11.9/s  stats={'calls': 15938, 'cache_hits': 65, 'input_tokens': 19555488, 'cost_usd': 0.8213}
+  labelled 16500/26324  11.9/s  stats={'calls': 16439, 'cache_hits': 65, 'input_tokens': 20169031, 'cost_usd': 0.8471}
+  labelled 17000/26324  11.9/s  stats={'calls': 16935, 'cache_hits': 69, 'input_tokens': 20776948, 'cost_usd': 0.8726}
+ERROR ProxyError HTTPSConnectionPool(host='api.typesafe.ai', port=443): Max retries exceeded with url: /v1/systemone (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 502 Bad Gateway')))
+  labelled 17500/26324  11.9/s  stats={'calls': 17430, 'cache_hits': 71, 'input_tokens': 21382877, 'cost_usd': 0.8981}
+  labelled 18000/26324  11.9/s  stats={'calls': 17925, 'cache_hits': 78, 'input_tokens': 21989313, 'cost_usd': 0.9236}
+  labelled 18500/26324  11.9/s  stats={'calls': 18423, 'cache_hits': 80, 'input_tokens': 22602009, 'cost_usd': 0.9493}
+  labelled 19000/26324  11.9/s  stats={'calls': 18916, 'cache_hits': 89, 'input_tokens': 23209190, 'cost_usd': 0.9748}
+  labelled 19500/26324  11.9/s  stats={'calls': 19403, 'cache_hits': 101, 'input_tokens': 23809004, 'cost_usd': 1.0}
+  labelled 20000/26324  11.9/s  stats={'calls': 19903, 'cache_hits': 101, 'input_tokens': 24425759, 'cost_usd': 1.0259}
+  labelled 20500/26324  11.9/s  stats={'calls': 20404, 'cache_hits': 101, 'input_tokens': 25043784, 'cost_usd': 1.0518}
+  labelled 21000/26324  11.9/s  stats={'calls': 20899, 'cache_hits': 106, 'input_tokens': 25654244, 'cost_usd': 1.0775}
+ERROR ProxyError HTTPSConnectionPool(host='api.typesafe.ai', port=443): Max retries exceeded with url: /v1/systemone (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 502 Bad Gateway')))
+  labelled 21500/26324  11.9/s  stats={'calls': 21395, 'cache_hits': 108, 'input_tokens': 26264459, 'cost_usd': 1.1031}
+  labelled 22000/26324  11.9/s  stats={'calls': 21895, 'cache_hits': 108, 'input_tokens': 26876268, 'cost_usd': 1.1288}
+  labelled 22500/26324  11.9/s  stats={'calls': 22391, 'cache_hits': 112, 'input_tokens': 27483966, 'cost_usd': 1.1543}
+  labelled 23000/26324  11.9/s  stats={'calls': 22891, 'cache_hits': 114, 'input_tokens': 28095949, 'cost_usd': 1.18}
+  labelled 23500/26324  11.9/s  stats={'calls': 23383, 'cache_hits': 121, 'input_tokens': 28698367, 'cost_usd': 1.2053}
+ERROR ProxyError HTTPSConnectionPool(host='api.typesafe.ai', port=443): Max retries exceeded with url: /v1/systemone (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 502 Bad Gateway')))
+ERROR ProxyError HTTPSConnectionPool(host='api.typesafe.ai', port=443): Max retries exceeded with url: /v1/systemone (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 502 Bad Gateway')))
+  labelled 24000/26324  12.0/s  stats={'calls': 23873, 'cache_hits': 130, 'input_tokens': 29298151, 'cost_usd': 1.2305}
+ERROR ReadTimeout HTTPSConnectionPool(host='api.typesafe.ai', port=443): Read timed out. (read timeout=20.0)
+  labelled 24500/26324  11.9/s  stats={'calls': 24369, 'cache_hits': 135, 'input_tokens': 29905223, 'cost_usd': 1.256}
+  labelled 25000/26324  12.0/s  stats={'calls': 24858, 'cache_hits': 146, 'input_tokens': 30505021, 'cost_usd': 1.2812}
+  labelled 25500/26324  12.0/s  stats={'calls': 25355, 'cache_hits': 148, 'input_tokens': 31116841, 'cost_usd': 1.3069}

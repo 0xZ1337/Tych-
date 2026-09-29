@@ -1,16 +1,16 @@
 {
- "updated": "2026-09-29T03:58:10+00:00",
+ "updated": "2026-09-29T04:22:11+00:00",
  "equity": 10000.0,
  "return_pct": 0.0,
  "positions": {},
- "n_signals": 0,
+ "n_signals": 1,
  "n_taken": 0,
  "n_closed": 0,
  "model_stats": {
-  "calls": 0,
+  "calls": 1,
   "cache_hits": 0,
-  "input_tokens": 0,
-  "cost_usd": 0.0
+  "input_tokens": 1223,
+  "cost_usd": 0.0001
  },
  "interval": "5m",
  "coins": [

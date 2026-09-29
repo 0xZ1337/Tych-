@@ -1,0 +1,164 @@
+{
+ "panel": "jev",
+ "interval": "1m",
+ "n": 11418,
+ "base_win_rate": 0.3677526712208793,
+ "base_avg_r": -2.0399730301351604,
+ "base_gross_win_rate": 0.3692415484322999,
+ "base_gross_avg_r": -0.16888003488156472,
+ "auc_target_before_stop": {
+  "setup_valid": 0.5156791498553026,
+  "regime": 0.4992049010937076,
+  "cost": 0.49438380057442155,
+  "quality": 0.5014926805473938,
+  "p_take": 0.4995686774412248
+ },
+ "auc_gross_win": {
+  "setup_valid": 0.5157266759128157,
+  "regime": 0.49924095048971745,
+  "cost": 0.49644955188496553,
+  "quality": 0.5023778940543081,
+  "p_take": 0.500629815958776
+ },
+ "auc_neg_target": {
+  "htf_against": 0.48223857942020837
+ },
+ "auc_neg_gross": {
+  "htf_against": 0.48142954373837754
+ },
+ "by_quality": [
+  {
+   "q_bin": "(-0.1, 1.0]",
+   "n": "6603",
+   "win": "0.362",
+   "avg_r": "-2.138",
+   "gross_win": "0.363",
+   "gross_r": "-0.188"
+  },
+  {
+   "q_bin": "(1.0, 1.5]",
+   "n": "4457",
+   "win": "0.378",
+   "avg_r": "-1.986",
+   "gross_win": "0.38",
+   "gross_r": "-0.142"
+  },
+  {
+   "q_bin": "(1.5, 2.0]",
+   "n": "318",
+   "win": "0.352",
+   "avg_r": "-0.918",
+   "gross_win": "0.358",
+   "gross_r": "-0.134"
+  },
+  {
+   "q_bin": "(2.0, 2.5]",
+   "n": "39",
+   "win": "0.205",
+   "avg_r": "-0.772",
+   "gross_win": "0.231",
+   "gross_r": "-0.451"
+  },
+  {
+   "q_bin": "(2.5, 3.0]",
+   "n": "1",
+   "win": "1.0",
+   "avg_r": "1.351",
+   "gross_win": "1.0",
+   "gross_r": "1.5"
+  }
+ ],
+ "by_action": [
+  {
+   "action": "skip",
+   "n": 9080,
+   "win": 0.365,
+   "avg_r": -2.175,
+   "gross_win": 0.366,
+   "gross_r": -0.183
+  },
+  {
+   "action": "take",
+   "n": 3,
+   "win": 0.333,
+   "avg_r": -1.029,
+   "gross_win": 0.333,
+   "gross_r": -0.211
+  },
+  {
+   "action": "wait",
+   "n": 2335,
+   "win": 0.377,
+   "avg_r": -1.515,
+   "gross_win": 0.382,
+   "gross_r": -0.116
+  }
+ ],
+ "by_coin": [
+  {
+   "coin": "BTC",
+   "n": 5995,
+   "win": 0.377,
+   "avg_r": -2.445,
+   "gross_r": -0.159,
+   "auc_quality_gross": 0.483
+  },
+  {
+   "coin": "ETH",
+   "n": 5423,
+   "win": 0.358,
+   "avg_r": -1.592,
+   "gross_r": -0.18,
+   "auc_quality_gross": 0.527
+  }
+ ],
+ "by_setup_valid": [
+  {
+   "sv_bin": "(0.0, 0.2]",
+   "n": "2903",
+   "win": "0.352",
+   "avg_r": "-2.224"
+  },
+  {
+   "sv_bin": "(0.2, 0.4]",
+   "n": "5256",
+   "win": "0.368",
+   "avg_r": "-2.081"
+  },
+  {
+   "sv_bin": "(0.4, 0.6]",
+   "n": "2211",
+   "win": "0.382",
+   "avg_r": "-1.797"
+  },
+  {
+   "sv_bin": "(0.6, 0.8]",
+   "n": "1048",
+   "win": "0.378",
+   "avg_r": "-1.834"
+  }
+ ],
+ "by_setup": [
+  {
+   "setup": "range_breakout",
+   "n": 1656,
+   "win": 0.361,
+   "avg_r": -2.583,
+   "auc_quality": 0.48
+  },
+  {
+   "setup": "trend_pullback",
+   "n": 6576,
+   "win": 0.357,
+   "avg_r": -2.074,
+   "auc_quality": 0.509
+  },
+  {
+   "setup": "vwap_reversion",
+   "n": 3186,
+   "win": 0.394,
+   "avg_r": -1.688,
+   "auc_quality": 0.467
+  }
+ ]
+}

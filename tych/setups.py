@@ -60,6 +60,8 @@ class SetupParams:
 
 def generate_signals(f: pd.DataFrame, p: SetupParams) -> pd.DataFrame:
     n = len(f)
+    if n == 0:
+        return pd.DataFrame({"signal": np.zeros(0, dtype=int), "setup": np.array([], dtype=object)}, index=f.index)
     signal = np.zeros(n, dtype=int)
     setup = np.array([""] * n, dtype=object)
 

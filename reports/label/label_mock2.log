@@ -10,3 +10,65 @@ XRP    5m src=binance     bars= 25919 candidates=  6970 to_label=0
 ONDO   5m src=binance     bars= 25919 candidates=  6700 to_label=0
 ENA    5m src=binance     bars= 25919 candidates=  6523 to_label=0
 BTC    1m src=binance     bars= 30240 candidates=  5998 to_label=0
+ETH    1m src=binance     bars= 30240 candidates=  6739 to_label=0
+ZEC    1m src=binance     bars= 30239 candidates=  8012 to_label=7085
+HYPE   1m src=binance     bars=  6775 candidates=  1344 to_label=604
+NEAR   1m src=binance     bars= 30240 candidates=  7396 to_label=0
+SOL    1m src=binance     bars= 30240 candidates=  6954 to_label=0
+PUMP   1m src=binance     bars= 30240 candidates=  6924 to_label=6027
+XRP    1m src=binance     bars= 30240 candidates=  7265 to_label=0
+ONDO   1m src=binance     bars= 30240 candidates=  6708 to_label=0
+ENA    1m src=binance     bars= 30240 candidates=  6692 to_label=0
+total to label: 25657  est_cost=1.35 USD
+  labelled 500/25657  72.6/s  stats={'calls': 23735, 'cache_hits': 0, 'input_tokens': 9968700, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 1000/25657  125.7/s  stats={'calls': 25141, 'cache_hits': 0, 'input_tokens': 10559220, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 1500/25657  170.2/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 2000/25657  209.3/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 2500/25657  243.2/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 3000/25657  273.1/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 3500/25657  298.3/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 4000/25657  321.0/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 4500/25657  340.4/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 5000/25657  357.6/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 5500/25657  374.5/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 6000/25657  388.4/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 6500/25657  402.6/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 7000/25657  413.1/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 7500/25657  422.8/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 8000/25657  430.7/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 8500/25657  438.7/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 9000/25657  444.1/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 9500/25657  451.9/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 10000/25657  459.7/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 10500/25657  465.4/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 11000/25657  470.9/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 11500/25657  476.9/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 12000/25657  481.0/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 12500/25657  485.6/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 13000/25657  488.6/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 13500/25657  491.3/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 14000/25657  494.4/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 14500/25657  498.4/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 15000/25657  502.6/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 15500/25657  505.0/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 16000/25657  506.4/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 16500/25657  507.9/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 17000/25657  509.3/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 17500/25657  511.3/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 18000/25657  513.7/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 18500/25657  514.2/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 19000/25657  516.1/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 19500/25657  516.8/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 20000/25657  518.1/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 20500/25657  518.7/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 21000/25657  518.7/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 21500/25657  518.6/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 22000/25657  519.3/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 22500/25657  520.0/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 23000/25657  521.1/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 23500/25657  520.0/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 24000/25657  520.2/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 24500/25657  515.1/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 25000/25657  513.3/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+  labelled 25500/25657  507.4/s  stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
+done 25657 in 51s; cache=128622 stats={'calls': 25657, 'cache_hits': 0, 'input_tokens': 10775940, 'cost_usd': 0.0, 'model': 'mock-jev-heuristic-0.1'}
