@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.env
+data_cache/*.parquet
+data_cache/*.csv
+reports/optimize_runs/*.jsonl
+.pytest_cache/
