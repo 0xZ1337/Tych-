@@ -141,9 +141,57 @@ panel (mêmes signaux). Objectif = t-stat du R moyen × min(1, n/60).
 - Mode d'entrée : limite −1,04 R médian vs marché −1,61 R.
 - Détail : `reports/REPORT_1m.md`, `reports/equity_best_1m.png`, `reports/search_1m.png`.
 
-### 5.2 M5 (10 coins, Jev réel)
+### 5.2 M5 (10 coins, Jev réel) — le run principal
 
-_(section complétée à la fin de l'étiquetage des 8 coins restants — voir plus bas)_
+Données : BTC/ETH 90 j, 7 coins 45 j (Binance), HYPE 17 j (Hyperliquid). Split
+au 2026-09-02 (train 63 j / validation 27 j). 52 900 décisions Jev en cache,
+200 itérations en 84 s (aucun appel réseau pendant la recherche).
+
+| indicateur | valeur |
+|---|---|
+| itérations avec ≥ 30 trades en train | 161 / 200 |
+| corrélation train/validation des t-stats | 0,68 |
+| itérations avec R validation > 0 | 16 % |
+| … parmi le top 20 par objectif train | 20 % |
+| uplift médian du panel Jev sur validation (mêmes signaux) | **+0,08 R**, positif dans **85 %** des itérations |
+| R validation médian sans panel | −0,19 |
+| R validation médian, entrée limite vs marché | −0,09 vs −0,16 |
+
+**La meilleure configuration selon le protocole (sélection sur train, #176)
+échoue en validation** : train +0,13 R (n = 82), validation **−0,28 R** (n = 144,
+t = −2,2, −14,8 %). C'est le résultat à retenir : rien de robuste n'a été trouvé.
+
+Deux configurations sont positives en validation, mais elles sont choisies *en
+regardant* la validation (donc in-sample de fait) et leurs t-stats sont < 1 :
+
+| # | entrée | cible | stop/target (ATR) | bougies max | seuil panel | train n / R | validation n / R / t | trades/jour |
+|---|---|---|---|---|---|---|---|---|
+| 126 | limite | retour VWAP | 1,44 / 3,08 | 18 | 0,624, veto skip, conf ≥ 0,4 | 146 / +0,07 | 188 / **+0,10** / 0,98 | 7,0 |
+| 200 | limite | retour VWAP | 1,11 / 2,68 | 12 | 0,724, veto skip | 35 / +0,18 | 71 / +0,17 / 0,90 | 2,6 |
+
+Pour #126 en validation, le setup `trend_pullback` porte tout (152 trades,
++0,17 R, 47 % de gains) ; `vwap_reversion` est négatif (36 trades, −0,23 R).
+Par coin : PUMP, SOL, HYPE, NEAR positifs ; ZEC, ETH, ENA négatifs. La
+configuration #126 est celle qui tourne maintenant en paper trading live : c'est
+le seul vrai test hors échantillon possible pour elle.
+
+Ce que le panel Jev apporte vraiment ici : un **filtre de fréquence cohérent**.
+Sur les mêmes signaux il relève le R moyen de +0,08 dans 85 % des cas, en ne
+gardant que 4 à 10 % des candidats (`action == skip` veto + seuil). Ce n'est pas
+de la prédiction directionnelle (AUC 0,52 sur 40 149 candidats, 10 coins), c'est
+un tri qui favorise les états où la volatilité paie les frais et où le contexte
+n'est pas contradictoire. Utile, pas suffisant.
+
+Calibration 10 coins M5 (40 149 candidats) : AUC gain brut `quality` 0,521,
+`cost_efficiency` 0,521, `p(take)` 0,518, `setup_valid` 0,515 ; `action` =
+skip 34 % / wait 65 % / take 0,8 %. R brut moyen par bin de `quality` :
+−0,13 (≤ 1) → −0,07 → −0,04 → +0,06 (2 à 2,5, n = 2 575).
+
+Fichiers : `reports/REPORT_5m.md` (tableau top 10, ventilations, meilleure
+config par protocole), `reports/equity_best_5m.png`, `reports/search_5m.png`,
+`reports/best_config_5m.json` (#176), `reports/config_5m_iter126.json`,
+`reports/config_5m_iter200.json`, `reports/optimize_runs/5m-jev-s42.jsonl`
+(les 200 itérations complètes), `reports/calibration_jev_5m_all.json`.
 
 ### 5.3 M5 baseline avec le stand-in heuristique (10 coins, 90 jours)
 
@@ -152,15 +200,37 @@ est la couche déterministe, pas le panel.
 
 ## 6. Paper trading live
 
-`scripts/paper.py` tourne sur les 10 coins en M5 avec le vrai Jev depuis
-03:53 UTC (session asiatique calme). Chaque décision est journalisée avec l'état
-complet envoyé, les 7 réponses, la latence et le coût
-(`reports/paper/decisions.jsonl`, `trades.jsonl`, `state.json`). Il sera
-relancé avec la meilleure configuration M5 dès qu'elle est disponible.
+`scripts/paper.py` a tourné sur les 10 coins en M5 avec le vrai Jev de 03:53 à
+05:05 UTC avec les paramètres par défaut (4 candidats, 4 refus Jev, latence
+530-650 ms), puis a été relancé à 05:07 UTC avec la configuration #126
+(`reports/config_5m_iter126.json` : entrée limite, cible VWAP pour la réversion,
+seuil panel 0,624, veto `skip`, confiance ≥ 0,4). Chaque décision est
+journalisée avec l'état complet envoyé, les 7 réponses, la latence et le coût
+(`reports/paper/decisions.jsonl`, `trades.jsonl`, `state.json`, `errors.jsonl`).
+Aucun ordre n'est envoyé. Le processus vit tant que le conteneur de session vit ;
+pour un test de plusieurs jours, le lancer sur une machine persistante :
+
+```bash
+python scripts/paper.py --config reports/config_5m_iter126.json
+```
+
+Attendu à ~7 trades/jour sur 10 coins : il faut 2 à 4 semaines de paper
+trading pour distinguer +0,10 R de zéro (t ≈ 1 à 188 trades).
 
 ## 7. Coûts Jev de cette session
 
-_(complété en fin de session)_
+| poste | décisions | coût |
+|---|---|---|
+| étiquetage BTC/ETH (M5 90 j + M1 21 j) | 26 311 | 1,35 $ |
+| étiquetage 8 coins M5 45 j | 26 567 | 1,36 $ |
+| A/B état enrichi | 1 499 | 0,08 $ |
+| paper trading live + tests | ~10 | < 0,01 $ |
+| **total** (66,5 M tokens d'entrée à 0,042 $/M) | **54 039** | **2,79 $** |
+
+Garde-fou logiciel à 3,50 $ dans `JevClient` ; il reste ≈ 2,2 $ sur les 5 $.
+Toutes les réponses sont en cache (`data_cache/jev_cache.sqlite`,
+`data_cache/panel_jev.pkl`, non versionnés) : relancer les 200 itérations, ou
+1 000, ne coûte plus rien.
 
 ## 8. Recommandations pour la v0.2
 

@@ -1,0 +1,252 @@
+BTC: 6584 candidates evaluated
+ETH: 6998 candidates evaluated
+ZEC: 3876 candidates evaluated
+HYPE: 1380 candidates evaluated
+NEAR: 3620 candidates evaluated
+SOL: 3533 candidates evaluated
+PUMP: 3646 candidates evaluated
+XRP: 3658 candidates evaluated
+ONDO: 3383 candidates evaluated
+ENA: 3471 candidates evaluated
+{
+ "panel": "jev",
+ "interval": "5m",
+ "n": 40149,
+ "base_win_rate": 0.37831577374280806,
+ "base_avg_r": -0.46372864113834283,
+ "base_gross_win_rate": 0.3831477745398391,
+ "base_gross_avg_r": -0.07153759194433328,
+ "auc_target_before_stop": {
+  "setup_valid": 0.5131132426933459,
+  "regime": 0.5089985559619732,
+  "cost": 0.5178805359099281,
+  "quality": 0.5180521212635325,
+  "p_take": 0.5164451350483903
+ },
+ "auc_gross_win": {
+  "setup_valid": 0.5149170781845119,
+  "regime": 0.509387191946037,
+  "cost": 0.5213677168396956,
+  "quality": 0.5206178232337104,
+  "p_take": 0.5183975616397971
+ },
+ "auc_neg_target": {
+  "htf_against": 0.4940356291707393
+ },
+ "auc_neg_gross": {
+  "htf_against": 0.4922822820849068
+ },
+ "by_quality": [
+  {
+   "q_bin": "(-0.1, 1.0]",
+   "n": "12390",
+   "win": "0.361",
+   "avg_r": "-0.72",
+   "gross_win": "0.363",
+   "gross_r": "-0.132"
+  },
+  {
+   "q_bin": "(1.0, 1.5]",
+   "n": "15104",
+   "win": "0.38",
+   "avg_r": "-0.451",
+   "gross_win": "0.384",
+   "gross_r": "-0.068"
+  },
+  {
+   "q_bin": "(1.5, 2.0]",
+   "n": "9884",
+   "win": "0.386",
+   "avg_r": "-0.259",
+   "gross_win": "0.394",
+   "gross_r": "-0.036"
+  },
+  {
+   "q_bin": "(2.0, 2.5]",
+   "n": "2575",
+   "win": "0.424",
+   "avg_r": "-0.111",
+   "gross_win": "0.431",
+   "gross_r": "0.06"
+  },
+  {
+   "q_bin": "(2.5, 3.0]",
+   "n": "184",
+   "win": "0.38",
+   "avg_r": "-0.206",
+   "gross_win": "0.386",
+   "gross_r": "-0.053"
+  },
+  {
+   "q_bin": "(3.0, 4.1]",
+   "n": "12",
+   "win": "0.5",
+   "avg_r": "0.133",
+   "gross_win": "0.5",
+   "gross_r": "0.242"
+  }
+ ],
+ "by_action": [
+  {
+   "action": "skip",
+   "n": 13845,
+   "win": 0.365,
+   "avg_r": -0.736,
+   "gross_win": 0.367,
+   "gross_r": -0.121
+  },
+  {
+   "action": "take",
+   "n": 310,
+   "win": 0.387,
+   "avg_r": -0.243,
+   "gross_win": 0.394,
+   "gross_r": -0.037
+  },
+  {
+   "action": "wait",
+   "n": 25994,
+   "win": 0.385,
+   "avg_r": -0.322,
+   "gross_win": 0.391,
+   "gross_r": -0.045
+  }
+ ],
+ "by_coin": [
+  {
+   "coin": "BTC",
+   "n": 6584,
+   "win": 0.355,
+   "avg_r": -0.994,
+   "gross_r": -0.141,
+   "auc_quality_gross": 0.499
+  },
+  {
+   "coin": "ENA",
+   "n": 3471,
+   "win": 0.386,
+   "avg_r": -0.196,
+   "gross_r": -0.044,
+   "auc_quality_gross": 0.537
+  },
+  {
+   "coin": "ETH",
+   "n": 6998,
+   "win": 0.374,
+   "avg_r": -0.654,
+   "gross_r": -0.083,
+   "auc_quality_gross": 0.518
+  },
+  {
+   "coin": "HYPE",
+   "n": 1380,
+   "win": 0.4,
+   "avg_r": -0.298,
+   "gross_r": -0.006,
+   "auc_quality_gross": 0.556
+  },
+  {
+   "coin": "NEAR",
+   "n": 3620,
+   "win": 0.401,
+   "avg_r": -0.181,
+   "gross_r": -0.007,
+   "auc_quality_gross": 0.504
+  },
+  {
+   "coin": "ONDO",
+   "n": 3383,
+   "win": 0.368,
+   "avg_r": -0.364,
+   "gross_r": -0.124,
+   "auc_quality_gross": 0.53
+  },
+  {
+   "coin": "PUMP",
+   "n": 3646,
+   "win": 0.386,
+   "avg_r": -0.184,
+   "gross_r": -0.046,
+   "auc_quality_gross": 0.511
+  },
+  {
+   "coin": "SOL",
+   "n": 3533,
+   "win": 0.378,
+   "avg_r": -0.457,
+   "gross_r": -0.079,
+   "auc_quality_gross": 0.522
+  },
+  {
+   "coin": "XRP",
+   "n": 3658,
+   "win": 0.376,
+   "avg_r": -0.408,
+   "gross_r": -0.073,
+   "auc_quality_gross": 0.517
+  },
+  {
+   "coin": "ZEC",
+   "n": 3876,
+   "win": 0.395,
+   "avg_r": -0.191,
+   "gross_r": -0.01,
+   "auc_quality_gross": 0.51
+  }
+ ],
+ "by_setup_valid": [
+  {
+   "sv_bin": "(0.0, 0.2]",
+   "n": "9164",
+   "win": "0.365",
+   "avg_r": "-0.573"
+  },
+  {
+   "sv_bin": "(0.2, 0.4]",
+   "n": "17354",
+   "win": "0.376",
+   "avg_r": "-0.471"
+  },
+  {
+   "sv_bin": "(0.4, 0.6]",
+   "n": "8387",
+   "win": "0.386",
+   "avg_r": "-0.404"
+  },
+  {
+   "sv_bin": "(0.6, 0.8]",
+   "n": "5243",
+   "win": "0.398",
+   "avg_r": "-0.344"
+  },
+  {
+   "sv_bin": "(0.8, 1.0]",
+   "n": "1",
+   "win": "0.0",
+   "avg_r": "-1.138"
+  }
+ ],
+ "by_setup": [
+  {
+   "setup": "range_breakout",
+   "n": 6545,
+   "win": 0.365,
+   "avg_r": -0.5,
+   "auc_quality": 0.518
+  },
+  {
+   "setup": "trend_pullback",
+   "n": 21141,
+   "win": 0.377,
+   "avg_r": -0.49,
+   "auc_quality": 0.515
+  },
+  {
+   "setup": "vwap_reversion",
+   "n": 12463,
+   "win": 0.388,
+   "avg_r": -0.401,
+   "auc_quality": 0.517
+  }
+ ]
+}

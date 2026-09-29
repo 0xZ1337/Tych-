@@ -3,10 +3,10 @@ __pycache__/
 .env
 data_cache/*.parquet
 data_cache/*.csv
-reports/optimize_runs/*.jsonl
+
 .pytest_cache/
 data_cache/*.sqlite
 data_cache/*.json
 data_cache/*.pkl
 reports/collector/
-reports/paper/*.jsonl
+

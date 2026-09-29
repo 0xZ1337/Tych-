@@ -132,6 +132,12 @@ class PaperTrader:
             entry = float(row["close"]) * (1 + d * (self.cost.spread_bps / 2e4 + self.cost.slippage_bps / 1e4))
             fee_in, filled = self.cost.taker_fee, True
         sl_pct = self.sp.sl_atr * atr / entry
+        tp = entry + d * self.sp.tp_atr * atr
+        if self.sp.tp_mode == "vwap" and setup == "vwap_reversion":
+            tp = float(row["vwap"])
+            if d * (tp - entry) < 0.5 * self.sp.sl_atr * atr:   # same rule as the backtest engine
+                append(OUT / "decisions.jsonl", {"t": now_iso(), "coin": coin, "bar": str(ts), "event": "vwap_target_too_close"})
+                return
         lev = min(5.0, self.risk_pct / max(sl_pct, 1e-6)) * size
         dec = {"t": now_iso(), "coin": coin, "bar": str(ts), "setup": setup, "direction": d, "go": go, "panel_score": score,
                "size_mult": size, "latency_ms": round(latency * 1000), "model": resp.get("model"),
@@ -143,7 +149,7 @@ class PaperTrader:
         self.n_taken += 1
         self.positions[coin] = {"direction": d, "setup": setup, "signal_time": str(ts), "entry": entry, "filled": filled,
                                 "entry_time": str(ts) if filled else None, "sl": entry - d * self.sp.sl_atr * atr,
-                                "tp": entry + d * self.sp.tp_atr * atr, "sl_pct": sl_pct, "fee_in": fee_in,
+                                "tp": tp, "sl_pct": sl_pct, "fee_in": fee_in,
                                 "leverage": lev, "panel_score": score, "size_mult": size, "bars": 0}
 
     def save_status(self) -> None:

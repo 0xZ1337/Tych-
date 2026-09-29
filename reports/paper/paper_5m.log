@@ -1,1 +1,1 @@
-paper trading ['BTC', 'ETH', 'ZEC', 'HYPE', 'NEAR', 'SOL', 'PUMP', 'XRP', 'ONDO', 'ENA'] on 5m entry=market model=JevClient
+paper trading ['BTC', 'ETH', 'ZEC', 'HYPE', 'NEAR', 'SOL', 'PUMP', 'XRP', 'ONDO', 'ENA'] on 5m entry=limit model=JevClient

@@ -1,0 +1,46 @@
+{
+ "interval": "5m",
+ "setup": {
+  "mr_enabled": true,
+  "mr_dist_atr": 2.157,
+  "mr_rsi_low": 25.031,
+  "mr_rsi_high": 62.571,
+  "mr_wick_min": 0.208,
+  "mr_vol_z_min": 1.995,
+  "mr_max_htf_slope": 0.662,
+  "pb_enabled": true,
+  "pb_min_htf_slope": 0.264,
+  "pb_rsi_lo": 41.891,
+  "pb_rsi_hi": 64.651,
+  "pb_touch_tol_atr": 0.225,
+  "bo_enabled": true,
+  "bo_vol_z_min": 2.93,
+  "bo_atr_regime_min": 1.268,
+  "bo_min_body": 0.737,
+  "sl_atr": 0.71,
+  "tp_atr": 1.75,
+  "max_bars": 36,
+  "sessions": [
+   "europe",
+   "us"
+  ],
+  "entry_mode": "limit",
+  "tp_mode": "atr",
+  "min_atr_cost_ratio": 4.0,
+  "cost_bps_ref": 10.0
+ },
+ "panel": {
+  "enabled": true,
+  "w_setup": 1.42,
+  "w_regime": 1.31,
+  "w_htf": 0.8,
+  "w_exhaustion": 0.74,
+  "w_cost": 0.35,
+  "w_quality": 0.42,
+  "threshold": 0.644,
+  "min_action_conf": 0.4,
+  "veto_skip": true,
+  "size_by_quality": true
+ },
+ "iter": 176
+}
