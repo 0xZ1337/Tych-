@@ -58,7 +58,8 @@ def canonical_outcomes(f: pd.DataFrame, cands: pd.DataFrame, coin: str, spread: 
                 if tr.empty:
                     continue
                 t = tr.iloc[0]
-                rows.append({"ts": ts, "direction": d, "setup": setup, "r": t["r"], "net_pct": t["net_pct"], "reason": t["reason"]})
+                rows.append({"ts": ts, "direction": d, "setup": setup, "r": t["r"], "net_pct": t["net_pct"], "reason": t["reason"],
+                             "gross_r": t["gross_pct"] / t["sl_pct"], "gross_win": int(t["gross_pct"] > 0)})
     return pd.DataFrame(rows)
 
 
@@ -84,6 +85,7 @@ def main() -> None:
         for _, r in out.iterrows():
             a = cache.get(PanelCache.key(coin, args.interval, r["ts"], r["direction"], r["setup"]))["answers"]
             recs.append({"coin": coin, "ts": r["ts"], "setup": r["setup"], "direction": r["direction"], "r": r["r"], "win": int(r["reason"] == "target"),
+                         "gross_r": r["gross_r"], "gross_win": r["gross_win"],
                          "setup_valid": a["setup_valid"]["noul"], "regime": a["regime_tradable"]["noul"], "cost": a["cost_efficiency"]["noul"],
                          "htf_against": a["htf_pressure_against"]["score"], "exhaustion": a["move_exhaustion"]["score"],
                          "quality": a["quality"]["score"], "p_take": a["action"]["probabilities"].get("take", 0.0),
@@ -95,11 +97,15 @@ def main() -> None:
         return
     lab = df["win"].values
     result = {"panel": args.panel, "interval": args.interval, "n": int(len(df)), "base_win_rate": float(lab.mean()), "base_avg_r": float(df["r"].mean()),
-              "auc": {k: auc(df[k].values, lab) for k in ["setup_valid", "regime", "cost", "quality", "p_take"]},
-              "auc_neg": {k: auc(-df[k].values, lab) for k in ["htf_against"]}}
+              "base_gross_win_rate": float(df["gross_win"].mean()), "base_gross_avg_r": float(df["gross_r"].mean()),
+              "auc_target_before_stop": {k: auc(df[k].values, lab) for k in ["setup_valid", "regime", "cost", "quality", "p_take"]},
+              "auc_gross_win": {k: auc(df[k].values, df["gross_win"].values) for k in ["setup_valid", "regime", "cost", "quality", "p_take"]},
+              "auc_neg_target": {k: auc(-df[k].values, lab) for k in ["htf_against"]},
+              "auc_neg_gross": {k: auc(-df[k].values, df["gross_win"].values) for k in ["htf_against"]}}
     df["q_bin"] = pd.cut(df["quality"], bins=[-0.1, 1, 1.5, 2, 2.5, 3, 4.1])
-    result["by_quality"] = df.groupby("q_bin", observed=True).agg(n=("r", "size"), win=("win", "mean"), avg_r=("r", "mean")).round(3).reset_index().astype(str).to_dict("records")
-    result["by_action"] = df.groupby("action").agg(n=("r", "size"), win=("win", "mean"), avg_r=("r", "mean")).round(3).reset_index().to_dict("records")
+    result["by_quality"] = df.groupby("q_bin", observed=True).agg(n=("r", "size"), win=("win", "mean"), avg_r=("r", "mean"), gross_win=("gross_win", "mean"), gross_r=("gross_r", "mean")).round(3).reset_index().astype(str).to_dict("records")
+    result["by_action"] = df.groupby("action").agg(n=("r", "size"), win=("win", "mean"), avg_r=("r", "mean"), gross_win=("gross_win", "mean"), gross_r=("gross_r", "mean")).round(3).reset_index().to_dict("records")
+    result["by_coin"] = df.groupby("coin").agg(n=("r", "size"), win=("win", "mean"), avg_r=("r", "mean"), gross_r=("gross_r", "mean"), auc_quality_gross=("quality", lambda s: auc(s.values, df.loc[s.index, "gross_win"].values))).round(3).reset_index().to_dict("records")
     df["sv_bin"] = pd.cut(df["setup_valid"], bins=[0, 0.2, 0.4, 0.6, 0.8, 1.0])
     result["by_setup_valid"] = df.groupby("sv_bin", observed=True).agg(n=("r", "size"), win=("win", "mean"), avg_r=("r", "mean")).round(3).reset_index().astype(str).to_dict("records")
     result["by_setup"] = df.groupby("setup").agg(n=("r", "size"), win=("win", "mean"), avg_r=("r", "mean"), auc_quality=("quality", lambda s: auc(s.values, df.loc[s.index, "win"].values))).round(3).reset_index().to_dict("records")

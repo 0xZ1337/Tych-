@@ -55,3 +55,11 @@ def test_limit_entry_requires_trade_through():
     t2 = simulate(df2, _sig(3, 0, 1), 1.0, 1.5, 5, cm)
     assert len(t2) == 1 and abs(t2.entry[0] - 100.0) < 1e-9 and t2.reason[0] == "target"
     assert abs(t2.fees_pct[0] - 2 * cm.maker_fee) < 1e-12
+
+
+def test_tp_override_from_signals():
+    df = _df([[100, 101, 99, 100], [100, 100.5, 99.8, 100.2], [100.2, 101.2, 100, 101]])
+    s = _sig(3, 0, 1)
+    s["tp_px"] = [101.0, np.nan, np.nan]      # target at 101 instead of 1.5 ATR
+    t = simulate(df, s, 1.0, 1.5, 5, CostModel(spread_bps=0, slippage_bps=0))
+    assert t.reason[0] == "target" and abs(t.tp[0] - 101.0) < 1e-9

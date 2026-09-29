@@ -41,6 +41,9 @@ class SetupParams:
     # global
     sessions: tuple = ("asia", "europe", "us", "late")
     entry_mode: str = "market"    # execution style, see backtest.engine.CostModel
+    tp_mode: str = "atr"              # "atr" fixed multiple; "vwap" = reversion trades target the session VWAP
+    min_atr_cost_ratio: float = 0.0   # only trade when 1 ATR (bps) >= ratio x round-trip taker cost (bps)
+    cost_bps_ref: float = 10.0        # reference round-trip cost used by the filter
 
     def to_dict(self) -> dict:
         d = asdict(self)
@@ -75,6 +78,9 @@ def generate_signals(f: pd.DataFrame, p: SetupParams) -> pd.DataFrame:
     body = f["body_ratio"].values
     ok_session = f["session"].isin(list(p.sessions)).values
     valid = ~np.isnan(atr) & ~np.isnan(dist) & ~np.isnan(hslope) & ok_session
+    if p.min_atr_cost_ratio > 0:
+        atr_bps = atr / c * 1e4
+        valid = valid & (atr_bps >= p.min_atr_cost_ratio * p.cost_bps_ref)
 
     if p.mr_enabled:
         long_mr = valid & (dist <= -p.mr_dist_atr) & (rsi <= p.mr_rsi_low) & (lw >= p.mr_wick_min) \
@@ -103,4 +109,10 @@ def generate_signals(f: pd.DataFrame, p: SetupParams) -> pd.DataFrame:
         signal[long_bo & m] = 1; setup[long_bo & m] = "range_breakout"
         signal[short_bo & m] = -1; setup[short_bo & m] = "range_breakout"
 
-    return pd.DataFrame({"signal": signal, "setup": setup}, index=f.index)
+    out = pd.DataFrame({"signal": signal, "setup": setup}, index=f.index)
+    if p.tp_mode == "vwap":
+        tp_px = np.full(n, np.nan)
+        m = (setup == "vwap_reversion") & (signal != 0)
+        tp_px[m] = f["vwap"].values[m]
+        out["tp_px"] = tp_px
+    return out

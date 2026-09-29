@@ -24,7 +24,7 @@ SEARCH_SPACE = {
     "mr_vol_z_min": (0.7, 2.0), "mr_max_htf_slope": (0.4, 1.5),
     "pb_min_htf_slope": (0.05, 0.6), "pb_rsi_lo": (30.0, 45.0), "pb_rsi_hi": (55.0, 70.0), "pb_touch_tol_atr": (0.05, 0.4),
     "bo_vol_z_min": (1.0, 3.0), "bo_atr_regime_min": (0.7, 1.4), "bo_min_body": (0.35, 0.75),
-    "sl_atr": (0.7, 1.6), "tp_atr": (1.0, 3.2), "max_bars": (6, 60),
+    "sl_atr": (0.7, 1.6), "tp_atr": (1.0, 3.2), "max_bars": (6, 60), "min_atr_cost_ratio": (0.0, 4.0),
 }
 
 

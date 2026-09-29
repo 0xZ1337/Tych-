@@ -30,7 +30,7 @@ from tych.jev.cache import PanelCache
 from tych.panel import PanelParams, combine
 from tych.setups import SetupParams, generate_signals
 
-SETUP_KEYS = [k for k in SEARCH_SPACE if k not in ("sl_atr", "tp_atr", "max_bars")]
+SETUP_KEYS = [k for k in SEARCH_SPACE if k not in ("sl_atr", "tp_atr", "max_bars", "min_atr_cost_ratio")]
 
 
 def sample_params(rng: random.Random, base: SetupParams | None = None) -> tuple[SetupParams, PanelParams]:
@@ -41,6 +41,7 @@ def sample_params(rng: random.Random, base: SetupParams | None = None) -> tuple[
     d["sl_atr"] = round(rng.uniform(*SEARCH_SPACE["sl_atr"]), 2)
     d["tp_atr"] = round(rng.uniform(*SEARCH_SPACE["tp_atr"]), 2)
     d["max_bars"] = int(rng.choice([6, 9, 12, 18, 24, 36, 48, 60]))
+    d["min_atr_cost_ratio"] = round(rng.choice([0.0, 0.0, 1.0, 1.5, 2.0, 3.0, 4.0]), 2)
     d["mr_enabled"] = rng.random() < 0.8
     d["pb_enabled"] = rng.random() < 0.8
     d["bo_enabled"] = rng.random() < 0.8
@@ -50,6 +51,7 @@ def sample_params(rng: random.Random, base: SetupParams | None = None) -> tuple[
     d["sessions"] = ("asia", "europe", "us", "late") if sess_choice < 0.6 else (("europe", "us") if sess_choice < 0.85 else ("us",))
     sp = SetupParams(**d)
     sp.entry_mode = rng.choice(["market", "limit", "limit"])
+    sp.tp_mode = rng.choice(["atr", "atr", "vwap"])
     pp = PanelParams(
         enabled=True,
         w_setup=round(rng.uniform(0.2, 1.5), 2), w_regime=round(rng.uniform(0.0, 1.5), 2), w_htf=round(rng.uniform(0.0, 1.5), 2),

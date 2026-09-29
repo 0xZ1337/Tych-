@@ -1,0 +1,12 @@
+model=mock cache_entries=102965
+BTC    5m src=binance     bars= 25919 candidates=  6588 to_label=0
+ETH    5m src=binance     bars= 25919 candidates=  6999 to_label=0
+ZEC    5m src=binance     bars= 25919 candidates=  7392 to_label=6126
+HYPE   5m src=hyperliquid bars=  5031 candidates=  1380 to_label=1
+NEAR   5m src=binance     bars= 25919 candidates=  6900 to_label=0
+SOL    5m src=binance     bars= 25919 candidates=  6952 to_label=0
+PUMP   5m src=binance     bars= 25919 candidates=  6926 to_label=5814
+XRP    5m src=binance     bars= 25919 candidates=  6970 to_label=0
+ONDO   5m src=binance     bars= 25919 candidates=  6700 to_label=0
+ENA    5m src=binance     bars= 25919 candidates=  6523 to_label=0
+BTC    1m src=binance     bars= 30240 candidates=  5998 to_label=0

@@ -44,6 +44,7 @@ def simulate(df: pd.DataFrame, signals: pd.DataFrame, sl_atr: float, tp_atr: flo
     atr = df["atr"].values
     sig = signals["signal"].values
     setup_names = signals["setup"].values
+    tp_override = signals["tp_px"].values if "tp_px" in signals.columns else None
     idx = df.index
     n = len(df)
     half_spread = cost.spread_bps / 2e4
@@ -78,6 +79,11 @@ def simulate(df: pd.DataFrame, signals: pd.DataFrame, sl_atr: float, tp_atr: flo
             fee_in = cost.taker_fee
         sl_dist = sl_atr * atr[i]
         tp_dist = tp_atr * atr[i]
+        if tp_override is not None and not np.isnan(tp_override[i]):
+            tp_dist = d * (tp_override[i] - entry)
+            if tp_dist < 0.5 * sl_dist:      # target already reached or too close to pay for costs
+                i += 1
+                continue
         sl_px = entry - d * sl_dist
         tp_px = entry + d * tp_dist
         exit_px = None
