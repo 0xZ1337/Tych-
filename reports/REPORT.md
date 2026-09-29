@@ -26,10 +26,15 @@ liquides d'Hyperliquid ce jour (BTC, ETH, ZEC, HYPE, NEAR, SOL, PUMP, XRP, ONDO,
 4. **Le panel « aide » uniquement en tradant moins** : sur M1 l'uplift médian de
    +0,30 R sur validation vient du veto de ~80 % des candidats (Jev répond
    `skip`/`wait` presque toujours), pas d'une sélection informée.
-5. **Ce qu'on a de solide** : un pipeline complet, reproductible et honnête
+5. **Les 200 tours de recherche (section 5.4) aboutissent à une configuration
+   positive en validation** (+0,21 R sur 84 trades, t = 1,76, profit factor 1,71)
+   : pullback de tendance seul, entrée maker, stop 2 / target 3 ATR, coins où un
+   ATR vaut ≥ 4× les frais. Signe robuste aux perturbations, ampleur non
+   significative, période effective ~45 jours. C'est la piste à confirmer en
+   paper trading, pas un système prêt.
+6. **Ce qu'on a de solide** : un pipeline complet, reproductible et honnête
    (superset + cache, split temporel, ablation sans panel, calibration AUC, fills
-   pessimistes, paper trader live). C'est l'outil qu'il faut pour itérer sur la
-   vraie question : trouver une couche déterministe avec un edge brut > coûts.
+   pessimistes, boucle de 200 hypothèses journalisées, paper trader live).
 
 ## 2. Ce qui a été construit
 
@@ -192,6 +197,58 @@ config par protocole), `reports/equity_best_5m.png`, `reports/search_5m.png`,
 `reports/best_config_5m.json` (#176), `reports/config_5m_iter126.json`,
 `reports/config_5m_iter200.json`, `reports/optimize_runs/5m-jev-s42.jsonl`
 (les 200 itérations complètes), `reports/calibration_jev_5m_all.json`.
+
+### 5.4 Les 200 tours de recherche (hypothèse → backtest → garder ou jeter)
+
+Différent de la recherche aléatoire ci-dessus : chaque tour teste **une hypothèse
+nommée** sur la configuration courante, l'accepte si l'objectif TRAIN s'améliore
+(avec ≥ 40 trades train), et enregistre la VALIDATION sans jamais s'en servir.
+Catalogue de 192 hypothèses en 5 phases (exécution/exits, gating des setups,
+filtres temps/régime, usage du panel Jev, coins/direction/robustesse), puis
+ablation de chaque étape acceptée. Journal complet : `reports/research/rounds-5m-jev.jsonl`
+et `reports/research/rounds-5m-jev.md` (tableau des 200 tours), trajectoire :
+`reports/research/rounds-5m-jev_trajectory.png`. Temps de calcul : 36 s
+(décisions Jev en cache).
+
+Point de départ : 3 setups, entrée marché, stop 1 ATR, target 1,5 ATR, panel par
+défaut → train −0,29 R (994 trades), validation −0,14 R (t = −4,0).
+
+**25 étapes acceptées**, dans l'ordre : entrée limite (maker) ; stop élargi
+1,2 → 2,0 ATR ; target 2,5 puis 3,0 ATR ; filtre « 1 ATR ≥ 1 → 4× le coût
+aller-retour » ; désactivation de la réversion VWAP puis du breakout (il ne
+reste que `trend_pullback`) ; pente HTF ≥ 0,4 ; tolérance de retour 0,3 ATR ;
+RSI 45-55 ; exclusion des heures UTC 4-7 ; volume ≥ 1,2× la médiane ; seuil
+panel 0,40 sans veto `skip` ; max 4 trades/coin/jour ; retrait de ZEC, NEAR, PUMP.
+
+| | train (63 j) | validation (27 j) |
+|---|---|---|
+| trades | 54 | 84 (3,1 / jour sur 7 coins) |
+| R moyen | +0,49 | **+0,21** |
+| t-stat | 3,5 (in-sample) | **1,76** |
+| profit factor | — | 1,71 |
+| rendement (risque 0,5 %/trade) | — | +6,3 %, max DD −2,2 % |
+
+Ce qu'il faut lire honnêtement :
+
+- **Le signe est robuste, l'ampleur ne l'est pas.** Les 8 perturbations (stop,
+  target, durée ±10-25 %, seuil ±0,05) gardent une validation entre +0,11 et
+  +0,19 R ; le walk-forward donne +0,42 R (n = 60) et +0,22 R (n = 75) sur les
+  deux derniers quarts. Mais t = 1,76 < 2 : ce n'est pas encore significatif, et
+  54 trades train c'est peu.
+- **Les deux premiers quarts sont vides** : le filtre « 1 ATR ≥ 4× coût »
+  exclut BTC/ETH (seuls coins avec de l'historique avant le 15 août). La config
+  n'a donc été observée que sur ~45 jours effectifs.
+- **L'essentiel vient de trois idées simples** (ablations) : le filtre
+  volatilité/coûts (sans lui : −0,14 R train, −0,02 R val), les exits larges
+  (stop 2 / target 3 ATR), et l'entrée maker. Le retrait de coins est de
+  l'ajustement fin (probablement du surapprentissage).
+- **Le panel Jev y contribue +0,015 R** sur validation (avec : +0,214 ; sans :
+  +0,199), à seuil 0,40 sans veto, c'est-à-dire presque transparent. Le stand-in
+  hors-ligne donne le même résultat. Cohérent avec l'AUC de 0,52.
+
+Cette configuration (`reports/config_research_5m.json`) a remplacé la #126 en
+paper trading live à partir de 05:40 UTC ; c'est son premier test réellement
+hors échantillon.
 
 ### 5.3 M5 baseline avec le stand-in heuristique (10 coins, 90 jours)
 

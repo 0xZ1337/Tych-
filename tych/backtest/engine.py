@@ -33,7 +33,7 @@ class CostModel:
 
 
 def simulate(df: pd.DataFrame, signals: pd.DataFrame, sl_atr: float, tp_atr: float, max_bars: int,
-             cost: CostModel, decide=None, coin: str = "") -> pd.DataFrame:
+             cost: CostModel, decide=None, coin: str = "", cooldown_bars: int = 0, max_trades_per_day: int = 0) -> pd.DataFrame:
     """Run trades for one instrument.
 
     ``decide(i, direction, setup) -> (go: bool, meta: dict)`` is called on each
@@ -52,9 +52,14 @@ def simulate(df: pd.DataFrame, signals: pd.DataFrame, sl_atr: float, tp_atr: flo
 
     trades = []
     i = 0
+    day_of = idx.floor("1D") if max_trades_per_day else None
+    day_count: dict = {}
     while i < n - 1:
         d = int(sig[i])
         if d == 0 or np.isnan(atr[i]):
+            i += 1
+            continue
+        if max_trades_per_day and day_count.get(day_of[i], 0) >= max_trades_per_day:
             i += 1
             continue
         meta = {"size_mult": 1.0}
@@ -119,7 +124,9 @@ def simulate(df: pd.DataFrame, signals: pd.DataFrame, sl_atr: float, tp_atr: flo
             "bars_held": exit_bar - entry_bar + 1, "gross_pct": gross, "fees_pct": fee_in + fee_out,
             "net_pct": net, "sl_pct": sl_dist / entry, "r": r_mult, **meta,
         })
-        i = exit_bar + 1
+        if max_trades_per_day:
+            day_count[day_of[i]] = day_count.get(day_of[i], 0) + 1
+        i = exit_bar + 1 + cooldown_bars
     cols = ["coin", "setup", "direction", "signal_time", "entry_time", "exit_time", "entry", "exit", "sl", "tp", "reason",
             "bars_held", "gross_pct", "fees_pct", "net_pct", "sl_pct", "r", "size_mult"]
     if not trades:

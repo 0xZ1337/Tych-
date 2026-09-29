@@ -44,17 +44,37 @@ class SetupParams:
     tp_mode: str = "atr"              # "atr" fixed multiple; "vwap" = reversion trades target the session VWAP
     min_atr_cost_ratio: float = 0.0   # only trade when 1 ATR (bps) >= ratio x round-trip taker cost (bps)
     cost_bps_ref: float = 10.0        # reference round-trip cost used by the filter
+    # --- research-loop filters (default = no effect)
+    max_vol_z: float = 99.0           # skip climactic volume bars above this
+    min_vol_z: float = 0.0            # skip dead bars below this
+    atr_regime_min: float = 0.0       # global volatility-regime window
+    atr_regime_max: float = 99.0
+    max_abs_streak: int = 99          # skip after long one-sided streaks
+    htf2_align: bool = False          # require the highest timeframe to agree with the direction (pullback/breakout)
+    htf2_fade: bool = False           # for reversion: require the highest timeframe to be against the extension
+    exclude_hours: tuple = ()         # UTC hours excluded
+    weekdays_only: bool = False
+    long_only: bool = False
+    short_only: bool = False
+    coins: tuple = ()                 # restrict to these coins (empty = all)
+    max_range_atr: float = 99.0       # skip huge signal bars
+    min_range_atr: float = 0.0
+    bb_z_abs_max: float = 99.0        # skip when already beyond N sigma
+    cooldown_bars: int = 0            # bars to wait after any trade exit (engine-level)
+    max_trades_per_day: int = 0       # 0 = unlimited (engine-level)
 
     def to_dict(self) -> dict:
         d = asdict(self)
-        d["sessions"] = list(self.sessions)
+        for k in ("sessions", "exclude_hours", "coins"):
+            d[k] = list(getattr(self, k))
         return d
 
     @classmethod
     def from_dict(cls, d: dict) -> "SetupParams":
         d = dict(d)
-        if "sessions" in d:
-            d["sessions"] = tuple(d["sessions"])
+        for k in ("sessions", "exclude_hours", "coins"):
+            if k in d:
+                d[k] = tuple(d[k])
         return cls(**d)
 
 
@@ -83,6 +103,13 @@ def generate_signals(f: pd.DataFrame, p: SetupParams) -> pd.DataFrame:
     if p.min_atr_cost_ratio > 0:
         atr_bps = atr / c * 1e4
         valid = valid & (atr_bps >= p.min_atr_cost_ratio * p.cost_bps_ref)
+    valid = valid & (volz <= p.max_vol_z) & (volz >= p.min_vol_z) & (regime >= p.atr_regime_min) & (regime <= p.atr_regime_max)
+    valid = valid & (np.abs(f["streak"].values) <= p.max_abs_streak) & (f["range_atr"].values <= p.max_range_atr) & (f["range_atr"].values >= p.min_range_atr)
+    valid = valid & (np.abs(f["bb_z"].values) <= p.bb_z_abs_max)
+    if p.exclude_hours:
+        valid = valid & ~np.isin(f.index.hour, list(p.exclude_hours))
+    if p.weekdays_only:
+        valid = valid & (f.index.dayofweek < 5)
 
     if p.mr_enabled:
         long_mr = valid & (dist <= -p.mr_dist_atr) & (rsi <= p.mr_rsi_low) & (lw >= p.mr_wick_min) \
@@ -102,6 +129,7 @@ def generate_signals(f: pd.DataFrame, p: SetupParams) -> pd.DataFrame:
         signal[long_pb & m] = 1; setup[long_pb & m] = "trend_pullback"
         signal[short_pb & m] = -1; setup[short_pb & m] = "trend_pullback"
 
+    htf2 = f["htf2_trend"].values
     if p.bo_enabled:
         long_bo = valid & (c > hi20_prev) & (volz >= p.bo_vol_z_min) & (regime >= p.bo_atr_regime_min) \
             & (body >= p.bo_min_body) & (c > o) & (htrend >= 0)
@@ -111,6 +139,17 @@ def generate_signals(f: pd.DataFrame, p: SetupParams) -> pd.DataFrame:
         signal[long_bo & m] = 1; setup[long_bo & m] = "range_breakout"
         signal[short_bo & m] = -1; setup[short_bo & m] = "range_breakout"
 
+    if p.htf2_fade:
+        # reversion only when the highest timeframe opposes the extension, i.e. agrees with the fade
+        bad = (setup == "vwap_reversion") & (np.sign(signal) != htf2)
+        signal[bad] = 0; setup[bad] = ""
+    if p.htf2_align:
+        bad = (setup != "vwap_reversion") & (signal != 0) & (np.sign(signal) != htf2)
+        signal[bad] = 0; setup[bad] = ""
+    if p.long_only:
+        setup[signal < 0] = ""; signal[signal < 0] = 0
+    if p.short_only:
+        setup[signal > 0] = ""; signal[signal > 0] = 0
     out = pd.DataFrame({"signal": signal, "setup": setup}, index=f.index)
     if p.tp_mode == "vwap":
         tp_px = np.full(n, np.nan)

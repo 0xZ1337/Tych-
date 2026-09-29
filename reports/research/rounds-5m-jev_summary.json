@@ -1,0 +1,373 @@
+{
+ "rounds": 200,
+ "accepted": [
+  {
+   "round": 1,
+   "name": "entry: resting limit at signal close (maker) instead of market",
+   "delta": {
+    "sp_entry_mode": "limit"
+   },
+   "objective": -5.732951038146884,
+   "val_R": -0.11152847775388439,
+   "val_t": -3.1514391686762053
+  },
+  {
+   "round": 4,
+   "name": "stop = 1.2 ATR",
+   "delta": {
+    "sp_sl_atr": 1.2
+   },
+   "objective": -5.098093146069038,
+   "val_R": -0.0770585698969981,
+   "val_t": -2.3576055570265795
+  },
+  {
+   "round": 5,
+   "name": "stop = 1.4 ATR",
+   "delta": {
+    "sp_sl_atr": 1.4
+   },
+   "objective": -4.428310187498841,
+   "val_R": -0.06877381004962235,
+   "val_t": -2.253666010887786
+  },
+  {
+   "round": 6,
+   "name": "stop = 1.6 ATR",
+   "delta": {
+    "sp_sl_atr": 1.6
+   },
+   "objective": -3.7312927936862317,
+   "val_R": -0.05986935190702031,
+   "val_t": -2.07756430585212
+  },
+  {
+   "round": 7,
+   "name": "stop = 2.0 ATR",
+   "delta": {
+    "sp_sl_atr": 2.0
+   },
+   "objective": -3.1383389369633727,
+   "val_R": -0.04749508433588424,
+   "val_t": -1.8476604876665856
+  },
+  {
+   "round": 11,
+   "name": "target = 2.5 ATR",
+   "delta": {
+    "sp_tp_atr": 2.5
+   },
+   "objective": -3.0874234495592705,
+   "val_R": -0.06802539301668924,
+   "val_t": -2.037962256195239
+  },
+  {
+   "round": 12,
+   "name": "target = 3.0 ATR",
+   "delta": {
+    "sp_tp_atr": 3.0
+   },
+   "objective": -2.3869401905492107,
+   "val_R": -0.07798849168130742,
+   "val_t": -2.1719722227633738
+  },
+  {
+   "round": 22,
+   "name": "trade only when 1 ATR >= 1.0 x round-trip cost",
+   "delta": {
+    "sp_min_atr_cost_ratio": 1.0
+   },
+   "objective": -2.239748613893738,
+   "val_R": -0.07007222413177483,
+   "val_t": -1.951128842261799
+  },
+  {
+   "round": 23,
+   "name": "trade only when 1 ATR >= 1.5 x round-trip cost",
+   "delta": {
+    "sp_min_atr_cost_ratio": 1.5
+   },
+   "objective": -2.239574023111887,
+   "val_R": -0.07084454854140747,
+   "val_t": -1.9633322539993363
+  },
+  {
+   "round": 24,
+   "name": "trade only when 1 ATR >= 2.0 x round-trip cost",
+   "delta": {
+    "sp_min_atr_cost_ratio": 2.0
+   },
+   "objective": -1.8922763265688787,
+   "val_R": -0.06217172405134837,
+   "val_t": -1.6789206557931868
+  },
+  {
+   "round": 25,
+   "name": "trade only when 1 ATR >= 3.0 x round-trip cost",
+   "delta": {
+    "sp_min_atr_cost_ratio": 3.0
+   },
+   "objective": -1.201732031554111,
+   "val_R": -0.06616618620330307,
+   "val_t": -1.6868720719448853
+  },
+  {
+   "round": 26,
+   "name": "trade only when 1 ATR >= 4.0 x round-trip cost",
+   "delta": {
+    "sp_min_atr_cost_ratio": 4.0
+   },
+   "objective": -1.078174843322267,
+   "val_R": -0.03639336380151451,
+   "val_t": -0.816541707621416
+  },
+  {
+   "round": 37,
+   "name": "disable vwap_reversion",
+   "delta": {
+    "sp_mr_enabled": false
+   },
+   "objective": -0.522464243721807,
+   "val_R": 0.02317717489157422,
+   "val_t": 0.45269753263720774
+  },
+  {
+   "round": 39,
+   "name": "disable range_breakout",
+   "delta": {
+    "sp_bo_enabled": false
+   },
+   "objective": 0.11754608371555977,
+   "val_R": 0.011553363902684152,
+   "val_t": 0.21577806722593287
+  },
+  {
+   "round": 64,
+   "name": "pullback: HTF slope >= 0.4",
+   "delta": {
+    "sp_pb_min_htf_slope": 0.4
+   },
+   "objective": 1.070278325499479,
+   "val_R": -0.00363765792598788,
+   "val_t": -0.04877297329733576
+  },
+  {
+   "round": 67,
+   "name": "pullback: touch tolerance 0.3 ATR",
+   "delta": {
+    "sp_pb_touch_tol_atr": 0.3
+   },
+   "objective": 1.576075073142373,
+   "val_R": -0.010573212634270272,
+   "val_t": -0.15487598451468215
+  },
+  {
+   "round": 70,
+   "name": "pullback: RSI band 45-55",
+   "delta": {
+    "sp_pb_rsi_lo": 45.0,
+    "sp_pb_rsi_hi": 55.0
+   },
+   "objective": 1.703783980073551,
+   "val_R": -0.02167945165049156,
+   "val_t": -0.31282369819255906
+  },
+  {
+   "round": 87,
+   "name": "exclude UTC hours 4-7",
+   "delta": {
+    "sp_exclude_hours": [
+     4,
+     5,
+     6,
+     7
+    ]
+   },
+   "objective": 1.892097163234395,
+   "val_R": 0.004101420906240175,
+   "val_t": 0.05630555427173912
+  },
+  {
+   "round": 97,
+   "name": "skip quiet bars, volume < 1.2 x median",
+   "delta": {
+    "sp_min_vol_z": 1.2
+   },
+   "objective": 2.417580472943966,
+   "val_R": 0.08818054708314606,
+   "val_t": 0.9333537355450304
+  },
+  {
+   "round": 113,
+   "name": "panel threshold 0.4",
+   "delta": {
+    "pp_threshold": 0.4
+   },
+   "objective": 2.5029888241956555,
+   "val_R": 0.152933320576634,
+   "val_t": 1.8905513838659729
+  },
+  {
+   "round": 120,
+   "name": "no veto on action == skip",
+   "delta": {
+    "pp_veto_skip": false
+   },
+   "objective": 2.5979523678167347,
+   "val_R": 0.152933320576634,
+   "val_t": 1.8905513838659729
+  },
+  {
+   "round": 151,
+   "name": "max 4 trades per coin per day",
+   "delta": {
+    "sp_max_trades_per_day": 4
+   },
+   "objective": 2.5987673669447955,
+   "val_R": 0.14919945336294982,
+   "val_t": 1.8292639178064414
+  },
+  {
+   "round": 158,
+   "name": "drop ZEC",
+   "delta": {
+    "sp_coins": "minus ZEC"
+   },
+   "objective": 2.6866863322122634,
+   "val_R": 0.15774370290053946,
+   "val_t": 1.7504695898712521
+  },
+  {
+   "round": 160,
+   "name": "drop NEAR",
+   "delta": {
+    "sp_coins": "minus NEAR"
+   },
+   "objective": 2.9891783535006224,
+   "val_R": 0.19393809034341397,
+   "val_t": 1.8775136598544464
+  },
+  {
+   "round": 162,
+   "name": "drop PUMP",
+   "delta": {
+    "sp_coins": "minus PUMP"
+   },
+   "objective": 3.1534220901038483,
+   "val_R": 0.21410325272215242,
+   "val_t": 1.7596475688469624
+  }
+ ],
+ "final_setup": {
+  "mr_enabled": false,
+  "mr_dist_atr": 2.0,
+  "mr_rsi_low": 30.0,
+  "mr_rsi_high": 70.0,
+  "mr_wick_min": 0.35,
+  "mr_vol_z_min": 1.0,
+  "mr_max_htf_slope": 0.8,
+  "pb_enabled": true,
+  "pb_min_htf_slope": 0.4,
+  "pb_rsi_lo": 45.0,
+  "pb_rsi_hi": 55.0,
+  "pb_touch_tol_atr": 0.3,
+  "bo_enabled": false,
+  "bo_vol_z_min": 1.5,
+  "bo_atr_regime_min": 0.9,
+  "bo_min_body": 0.5,
+  "sl_atr": 2.0,
+  "tp_atr": 3.0,
+  "max_bars": 24,
+  "sessions": [
+   "asia",
+   "europe",
+   "us",
+   "late"
+  ],
+  "entry_mode": "limit",
+  "tp_mode": "atr",
+  "min_atr_cost_ratio": 4.0,
+  "cost_bps_ref": 10.0,
+  "max_vol_z": 99.0,
+  "min_vol_z": 1.2,
+  "atr_regime_min": 0.0,
+  "atr_regime_max": 99.0,
+  "max_abs_streak": 99,
+  "htf2_align": false,
+  "htf2_fade": false,
+  "exclude_hours": [
+   4,
+   5,
+   6,
+   7
+  ],
+  "weekdays_only": false,
+  "long_only": false,
+  "short_only": false,
+  "coins": [
+   "BTC",
+   "ETH",
+   "HYPE",
+   "SOL",
+   "XRP",
+   "ONDO",
+   "ENA"
+  ],
+  "max_range_atr": 99.0,
+  "min_range_atr": 0.0,
+  "bb_z_abs_max": 99.0,
+  "cooldown_bars": 0,
+  "max_trades_per_day": 4
+ },
+ "final_panel": {
+  "enabled": true,
+  "w_setup": 1.0,
+  "w_regime": 0.8,
+  "w_htf": 0.8,
+  "w_exhaustion": 0.4,
+  "w_cost": 0.6,
+  "w_quality": 1.2,
+  "threshold": 0.4,
+  "min_action_conf": 0.0,
+  "veto_skip": false,
+  "size_by_quality": true,
+  "require_take": false,
+  "use_p_take": false,
+  "threshold_by_setup": {}
+ },
+ "final": {
+  "train": {
+   "n_trades": 54,
+   "win_rate": 0.6111111111111112,
+   "avg_r": 0.4865884168808223,
+   "expectancy_pct": 0.7469138145197743,
+   "profit_factor": 3.063924296533549,
+   "total_return_pct": 9.368930594563318,
+   "max_drawdown_pct": -1.0239521984982727,
+   "sharpe_trade": 3.284671735771436,
+   "avg_bars": 14.592592592592593,
+   "pct_target": 0.4444444444444444,
+   "pct_stop": 0.18518518518518517,
+   "trades_per_day": 0.8566140830175376,
+   "tstat": 3.5038023223376094
+  },
+  "val": {
+   "n_trades": 84,
+   "win_rate": 0.5833333333333334,
+   "avg_r": 0.21410325272215242,
+   "expectancy_pct": 0.36315954092918,
+   "profit_factor": 1.708525029346879,
+   "total_return_pct": 6.302341623583407,
+   "max_drawdown_pct": -2.1920594651793532,
+   "sharpe_trade": 1.7198488970484263,
+   "avg_bars": 13.607142857142858,
+   "pct_target": 0.36904761904761907,
+   "pct_stop": 0.36904761904761907,
+   "trades_per_day": 3.10919185687847,
+   "tstat": 1.7596475688469624
+  },
+  "objective": 3.1534220901038483,
+  "n_total": 138
+ },
+ "elapsed": 33.84912586212158
+}

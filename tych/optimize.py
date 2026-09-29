@@ -92,6 +92,8 @@ class Runner:
     def run(self, sp: SetupParams, pp: PanelParams | None) -> pd.DataFrame:
         all_trades = []
         for coin, (f, _) in self.feats.items():
+            if sp.coins and coin not in sp.coins:
+                continue
             sig = generate_signals(f, sp)
             if (sig["signal"] != 0).sum() == 0:
                 continue
@@ -109,12 +111,46 @@ class Runner:
                         return False, {"panel_score": float("nan")}
                     go, score, size = combine(ent["answers"], setup, pp)
                     return go, {"panel_score": score, "size_mult": size}
-            tr = simulate(f, sig, sp.sl_atr, sp.tp_atr, sp.max_bars, cost, decide=decide, coin=coin)
+            tr = simulate(f, sig, sp.sl_atr, sp.tp_atr, sp.max_bars, cost, decide=decide, coin=coin,
+                          cooldown_bars=sp.cooldown_bars, max_trades_per_day=sp.max_trades_per_day)
             if not tr.empty:
                 all_trades.append(tr)
         if not all_trades:
             return pd.DataFrame()
         return pd.concat(all_trades, ignore_index=True)
+
+    def evaluate_cost(self, sp, pp, **cost_overrides) -> dict:
+        """Evaluate under a different cost model (sensitivity measurement)."""
+        saved = self.cost
+        em = cost_overrides.pop("entry_mode", None)
+        self.cost = replace(saved, **cost_overrides)
+        try:
+            return self.evaluate(replace(sp, entry_mode=em) if em else sp, pp)
+        finally:
+            self.cost = saved
+
+    def evaluate_window(self, sp, pp, q: int, nq: int) -> dict:
+        """Metrics restricted to one of `nq` equal time windows over the whole period."""
+        starts = [f.index[0] for f, _ in self.feats.values()]
+        ends = [f.index[-1] for f, _ in self.feats.values()]
+        t0, t1 = min(starts), max(ends)
+        a = t0 + (t1 - t0) * q / nq
+        b = t0 + (t1 - t0) * (q + 1) / nq
+        tr = self.run(sp, pp)
+        if tr.empty:
+            return {"train": summarize(tr), "val": summarize(tr), "objective": -9.0, "n_total": 0}
+        w = tr[(tr["signal_time"] >= a) & (tr["signal_time"] < b)]
+        m = summarize(w, (b - a).total_seconds() / 86400)
+        m["tstat"] = tstat(w["r"]) if len(w) > 1 else 0.0
+        return {"train": m, "val": m, "objective": m["tstat"] * min(1.0, len(w) / 60.0), "n_total": int(len(w)), "window": [str(a), str(b)]}
+
+    def evaluate_mock(self, sp, pp) -> dict:
+        saved = self.cache
+        self.cache = PanelCache("mock")
+        try:
+            return self.evaluate(sp, pp)
+        finally:
+            self.cache = saved
 
     def evaluate(self, sp: SetupParams, pp: PanelParams | None) -> dict:
         tr = self.run(sp, pp)

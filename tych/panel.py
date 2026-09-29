@@ -6,7 +6,7 @@ live here and are what the optimiser tunes.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
 
 
 @dataclass
@@ -22,6 +22,9 @@ class PanelParams:
     min_action_conf: float = 0.0     # confidence floor on the `action` choice
     veto_skip: bool = True           # `action == skip` vetoes regardless of score
     size_by_quality: bool = True     # scale size with quality level
+    require_take: bool = False       # only trade when `action == take`
+    use_p_take: bool = False         # composite score = probability of `take` instead of the weighted mix
+    threshold_by_setup: dict = field(default_factory=dict)   # per-setup override of `threshold`
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -48,7 +51,12 @@ def combine(answers: dict, setup: str, p: PanelParams) -> tuple[bool, float, flo
     tot = sum(w) or 1.0
     score = sum(wi * xi for wi, xi in zip(w, parts)) / tot
 
-    go = score >= p.threshold
+    if p.use_p_take:
+        score = float(act.get("probabilities", {}).get("take", 0.0))
+    thr = p.threshold_by_setup.get(setup, p.threshold)
+    go = score >= thr
+    if p.require_take and act.get("choice") != "take":
+        go = False
     if p.veto_skip and act.get("choice") == "skip":
         go = False
     if float(act.get("confidence", 1.0)) < p.min_action_conf:

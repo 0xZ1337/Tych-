@@ -1,0 +1,238 @@
+interval=5m coins=['BTC', 'ETH', 'ZEC', 'HYPE', 'NEAR', 'SOL', 'PUMP', 'XRP', 'ONDO', 'ENA'] split=2026-09-02 04:41:00+00:00 train_days=63 val_days=27
+catalogue: 192 hypotheses
+[  0] base           base    starting point                                                 obj= -7.22 train n= 994 R=-0.294 | val n=1402 R=-0.137 t=-4.00 -> baseline
+[  1] A-execution    mutate  entry: resting limit at signal close (maker) instead of market obj= -5.73 train n= 902 R=-0.240 | val n=1295 R=-0.112 t=-3.15 -> ACCEPT
+[  2] A-exits        mutate  stop = 0.7 ATR                                                 obj= -6.16 train n= 954 R=-0.301 | val n=1377 R=-0.176 t=-4.25 -> reject
+[  3] A-exits        mutate  stop = 0.85 ATR                                                obj= -6.01 train n= 936 R=-0.268 | val n=1335 R=-0.134 t=-3.53 -> reject
+[  4] A-exits        mutate  stop = 1.2 ATR                                                 obj= -5.10 train n= 881 R=-0.197 | val n=1250 R=-0.077 t=-2.36 -> ACCEPT
+[  5] A-exits        mutate  stop = 1.4 ATR                                                 obj= -4.43 train n= 851 R=-0.161 | val n=1214 R=-0.069 t=-2.25 -> ACCEPT
+[  6] A-exits        mutate  stop = 1.6 ATR                                                 obj= -3.73 train n= 826 R=-0.128 | val n=1174 R=-0.060 t=-2.08 -> ACCEPT
+[  7] A-exits        mutate  stop = 2.0 ATR                                                 obj= -3.14 train n= 800 R=-0.096 | val n=1130 R=-0.047 t=-1.85 -> ACCEPT
+[  8] A-exits        mutate  target = 1.0 ATR                                               obj= -3.20 train n= 865 R=-0.080 | val n=1219 R=-0.045 t=-2.21 -> reject
+[  9] A-exits        mutate  target = 1.2 ATR                                               obj= -3.34 train n= 839 R=-0.092 | val n=1184 R=-0.045 t=-1.97 -> reject
+[ 10] A-exits        mutate  target = 2.0 ATR                                               obj= -3.40 train n= 755 R=-0.120 | val n=1067 R=-0.045 t=-1.49 -> reject
+[ 11] A-exits        mutate  target = 2.5 ATR                                               obj= -3.09 train n= 725 R=-0.120 | val n=1013 R=-0.068 t=-2.04 -> ACCEPT
+[ 12] A-exits        mutate  target = 3.0 ATR                                               obj= -2.39 train n= 696 R=-0.100 | val n= 975 R=-0.078 t=-2.17 -> ACCEPT
+[ 13] A-exits        mutate  target = 3.5 ATR                                               obj= -2.68 train n= 675 R=-0.119 | val n= 952 R=-0.106 t=-2.80 -> reject
+[ 14] A-exits        mutate  target = 4.0 ATR                                               obj= -2.53 train n= 667 R=-0.117 | val n= 930 R=-0.105 t=-2.68 -> reject
+[ 15] A-exits        mutate  time stop = 6 bars                                             obj= -5.05 train n= 860 R=-0.134 | val n=1227 R=-0.050 t=-2.25 -> reject
+[ 16] A-exits        mutate  time stop = 9 bars                                             obj= -3.61 train n= 803 R=-0.112 | val n=1142 R=-0.046 t=-1.72 -> reject
+[ 17] A-exits        mutate  time stop = 12 bars                                            obj= -2.89 train n= 757 R=-0.101 | val n=1078 R=-0.057 t=-1.90 -> reject
+[ 18] A-exits        mutate  time stop = 18 bars                                            obj= -3.00 train n= 717 R=-0.117 | val n=1014 R=-0.053 t=-1.58 -> reject
+[ 19] A-exits        mutate  time stop = 36 bars                                            obj= -2.52 train n= 679 R=-0.113 | val n= 946 R=-0.055 t=-1.44 -> reject
+[ 20] A-exits        mutate  time stop = 60 bars                                            obj= -3.00 train n= 664 R=-0.140 | val n= 935 R=-0.033 t=-0.83 -> reject
+[ 21] A-exits        mutate  reversion targets the session VWAP instead of a fixed ATR mult obj= -2.63 train n= 694 R=-0.112 | val n= 965 R=-0.094 t=-2.57 -> reject
+[ 22] A-costs        mutate  trade only when 1 ATR >= 1.0 x round-trip cost                 obj= -2.24 train n= 691 R=-0.094 | val n= 970 R=-0.070 t=-1.95 -> ACCEPT
+[ 23] A-costs        mutate  trade only when 1 ATR >= 1.5 x round-trip cost                 obj= -2.24 train n= 675 R=-0.095 | val n= 959 R=-0.071 t=-1.96 -> ACCEPT
+[ 24] A-costs        mutate  trade only when 1 ATR >= 2.0 x round-trip cost                 obj= -1.89 train n= 598 R=-0.085 | val n= 904 R=-0.062 t=-1.68 -> ACCEPT
+[ 25] A-costs        mutate  trade only when 1 ATR >= 3.0 x round-trip cost                 obj= -1.20 train n= 502 R=-0.059 | val n= 806 R=-0.066 t=-1.69 -> ACCEPT
+[ 26] A-costs        mutate  trade only when 1 ATR >= 4.0 x round-trip cost                 obj= -1.08 train n= 378 R=-0.060 | val n= 619 R=-0.036 t=-0.82 -> ACCEPT
+[ 27] A-costs        measure cost sensitivity: target exits also pay taker                  obj= -1.25 train n= 378 R=-0.069 | val n= 619 R=-0.046 t=-1.05 -> measured
+[ 28] A-costs        measure cost sensitivity: zero slippage                                obj= -1.03 train n= 378 R=-0.057 | val n= 619 R=-0.033 t=-0.75 -> measured
+[ 29] A-costs        measure cost sensitivity: 2 bps slippage                               obj= -1.23 train n= 378 R=-0.069 | val n= 619 R=-0.045 t=-1.01 -> measured
+[ 30] A-costs        measure cost sensitivity: all fills taker, 1 bp slippage               obj= -1.96 train n= 396 R=-0.105 | val n= 643 R=-0.094 t=-2.19 -> measured
+[ 31] A-exits        mutate  joint exits stop 0.8 / target 1.2 ATR                          obj= -4.45 train n= 554 R=-0.234 | val n= 883 R=-0.094 t=-2.19 -> reject
+[ 32] A-exits        mutate  joint exits stop 0.8 / target 2.0 ATR                          obj= -3.76 train n= 523 R=-0.251 | val n= 830 R=-0.045 t=-0.80 -> reject
+[ 33] A-exits        mutate  joint exits stop 1.0 / target 2.0 ATR                          obj= -3.48 train n= 491 R=-0.214 | val n= 794 R=-0.066 t=-1.29 -> reject
+[ 34] A-exits        mutate  joint exits stop 1.2 / target 1.8 ATR                          obj= -2.82 train n= 478 R=-0.156 | val n= 772 R=-0.045 t=-0.99 -> reject
+[ 35] A-exits        mutate  joint exits stop 1.2 / target 2.4 ATR                          obj= -2.16 train n= 460 R=-0.137 | val n= 723 R=-0.052 t=-0.99 -> reject
+[ 36] A-exits        mutate  joint exits stop 1.5 / target 1.5 ATR                          obj= -1.72 train n= 473 R=-0.079 | val n= 768 R=-0.069 t=-1.89 -> reject
+[ 37] B-setups       mutate  disable vwap_reversion                                         obj= -0.52 train n= 283 R=-0.033 | val n= 470 R=+0.023 t=+0.45 -> ACCEPT
+[ 38] B-setups       mutate  disable trend_pullback                                         obj= -2.13 train n=  53 R=-0.342 | val n=  75 R=+0.019 t=+0.15 -> reject
+[ 39] B-setups       mutate  disable range_breakout                                         obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> ACCEPT
+[ 40] B-setups       mutate  only vwap_reversion                                            obj= -1.99 train n= 115 R=-0.201 | val n= 211 R=-0.115 t=-1.51 -> reject
+[ 41] B-setups       mutate  only trend_pullback                                            obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 42] B-setups       mutate  only range_breakout                                            obj= -2.13 train n=  53 R=-0.342 | val n=  75 R=+0.019 t=+0.15 -> reject
+[ 43] B-reversion    mutate  reversion: extension >= 1.5 ATR from VWAP                      obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 44] B-reversion    mutate  reversion: extension >= 1.75 ATR from VWAP                     obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 45] B-reversion    mutate  reversion: extension >= 2.25 ATR from VWAP                     obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 46] B-reversion    mutate  reversion: extension >= 2.5 ATR from VWAP                      obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 47] B-reversion    mutate  reversion: extension >= 3.0 ATR from VWAP                      obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 48] B-reversion    mutate  reversion: RSI extremes 35/65                                  obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 49] B-reversion    mutate  reversion: RSI extremes 25/75                                  obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 50] B-reversion    mutate  reversion: RSI extremes 22/78                                  obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 51] B-reversion    mutate  reversion: RSI extremes 38/62                                  obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 52] B-reversion    mutate  reversion: rejection wick >= 0.2                               obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 53] B-reversion    mutate  reversion: rejection wick >= 0.45                              obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 54] B-reversion    mutate  reversion: rejection wick >= 0.5                               obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 55] B-reversion    mutate  reversion: volume >= 0.7 x median                              obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 56] B-reversion    mutate  reversion: volume >= 1.5 x median                              obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 57] B-reversion    mutate  reversion: volume >= 2.0 x median                              obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 58] B-reversion    mutate  reversion: do not fade HTF slope beyond 0.4                    obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 59] B-reversion    mutate  reversion: do not fade HTF slope beyond 1.0                    obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 60] B-reversion    mutate  reversion: do not fade HTF slope beyond 1.5                    obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 61] B-reversion    mutate  reversion: highest timeframe must agree with the fade          obj=  0.12 train n= 257 R=+0.008 | val n= 429 R=+0.012 t=+0.22 -> reject
+[ 62] B-pullback     mutate  pullback: HTF slope >= 0.05                                    obj= -1.00 train n= 324 R=-0.060 | val n= 535 R=+0.008 t=+0.16 -> reject
+[ 63] B-pullback     mutate  pullback: HTF slope >= 0.1                                     obj= -0.65 train n= 309 R=-0.040 | val n= 503 R=+0.013 t=+0.27 -> reject
+[ 64] B-pullback     mutate  pullback: HTF slope >= 0.4                                     obj=  1.07 train n= 133 R=+0.098 | val n= 219 R=-0.004 t=-0.05 -> ACCEPT
+[ 65] B-pullback     mutate  pullback: HTF slope >= 0.6                                     obj=  0.03 train n=  60 R=+0.004 | val n=  65 R=-0.114 t=-0.86 -> reject
+[ 66] B-pullback     mutate  pullback: touch tolerance 0.05 ATR                             obj=  0.62 train n= 120 R=+0.059 | val n= 191 R=-0.002 t=-0.03 -> reject
+[ 67] B-pullback     mutate  pullback: touch tolerance 0.3 ATR                              obj=  1.58 train n= 149 R=+0.137 | val n= 257 R=-0.011 t=-0.15 -> ACCEPT
+[ 68] B-pullback     mutate  pullback: touch tolerance 0.4 ATR                              obj=  1.07 train n= 156 R=+0.091 | val n= 273 R=-0.031 t=-0.47 -> reject
+[ 69] B-pullback     mutate  pullback: RSI band 30-70                                       obj=  1.58 train n= 149 R=+0.137 | val n= 257 R=-0.011 t=-0.15 -> reject
+[ 70] B-pullback     mutate  pullback: RSI band 45-55                                       obj=  1.70 train n= 145 R=+0.149 | val n= 251 R=-0.022 t=-0.31 -> ACCEPT
+[ 71] B-pullback     mutate  pullback: RSI band 40-65                                       obj=  1.58 train n= 149 R=+0.137 | val n= 257 R=-0.011 t=-0.15 -> reject
+[ 72] B-breakout     mutate  breakout: volume >= 1.0 x median                               obj=  1.70 train n= 145 R=+0.149 | val n= 251 R=-0.022 t=-0.31 -> reject
+[ 73] B-breakout     mutate  breakout: volume >= 2.0 x median                               obj=  1.70 train n= 145 R=+0.149 | val n= 251 R=-0.022 t=-0.31 -> reject
+[ 74] B-breakout     mutate  breakout: volume >= 3.0 x median                               obj=  1.70 train n= 145 R=+0.149 | val n= 251 R=-0.022 t=-0.31 -> reject
+[ 75] B-breakout     mutate  breakout: volatility regime >= 0.7                             obj=  1.70 train n= 145 R=+0.149 | val n= 251 R=-0.022 t=-0.31 -> reject
+[ 76] B-breakout     mutate  breakout: volatility regime >= 1.1                             obj=  1.70 train n= 145 R=+0.149 | val n= 251 R=-0.022 t=-0.31 -> reject
+[ 77] B-breakout     mutate  breakout: volatility regime >= 1.4                             obj=  1.70 train n= 145 R=+0.149 | val n= 251 R=-0.022 t=-0.31 -> reject
+[ 78] B-breakout     mutate  breakout: body >= 0.35 of range                                obj=  1.70 train n= 145 R=+0.149 | val n= 251 R=-0.022 t=-0.31 -> reject
+[ 79] B-breakout     mutate  breakout: body >= 0.6 of range                                 obj=  1.70 train n= 145 R=+0.149 | val n= 251 R=-0.022 t=-0.31 -> reject
+[ 80] B-breakout     mutate  breakout: body >= 0.75 of range                                obj=  1.70 train n= 145 R=+0.149 | val n= 251 R=-0.022 t=-0.31 -> reject
+[ 81] B-setups       mutate  trend setups must agree with the highest timeframe             obj=  1.15 train n= 123 R=+0.110 | val n= 208 R=-0.059 t=-0.78 -> reject
+[ 82] C-time         mutate  sessions europe+us only                                        obj=  1.58 train n=  84 R=+0.184 | val n= 161 R=+0.091 t=+1.04 -> reject
+[ 83] C-time         mutate  sessions us only                                               obj=  1.57 train n=  54 R=+0.247 | val n= 107 R=+0.072 t=+0.72 -> reject
+[ 84] C-time         mutate  sessions asia+europe only                                      obj=  0.99 train n=  77 R=+0.121 | val n= 126 R=-0.121 t=-1.19 -> reject
+[ 85] C-time         mutate  sessions europe+us+late only                                   obj=  1.52 train n=  98 R=+0.161 | val n= 185 R=+0.082 t=+1.00 -> reject
+[ 86] C-time         mutate  exclude UTC hours 0-3                                          obj=  1.12 train n= 116 R=+0.111 | val n= 203 R=+0.055 t=+0.72 -> reject
+[ 87] C-time         mutate  exclude UTC hours 4-7                                          obj=  1.89 train n= 125 R=+0.177 | val n= 227 R=+0.004 t=+0.06 -> ACCEPT
+[ 88] C-time         mutate  exclude UTC hours 8-11                                         obj=  1.83 train n= 123 R=+0.173 | val n= 219 R=-0.068 t=-0.94 -> reject
+[ 89] C-time         mutate  exclude UTC hours 12-15                                        obj=  1.20 train n= 123 R=+0.114 | val n= 185 R=-0.080 t=-1.01 -> reject
+[ 90] C-time         mutate  exclude UTC hours 16-19                                        obj=  1.23 train n= 117 R=+0.122 | val n= 215 R=-0.004 t=-0.05 -> reject
+[ 91] C-time         mutate  exclude UTC hours 20-23                                        obj=  1.84 train n= 127 R=+0.172 | val n= 220 R=-0.052 t=-0.69 -> reject
+[ 92] C-time         mutate  weekdays only                                                  obj=  1.50 train n= 105 R=+0.151 | val n= 181 R=-0.020 t=-0.24 -> reject
+[ 93] C-regime       mutate  skip climactic volume > 3.0 x median                           obj=  1.44 train n= 119 R=+0.139 | val n= 223 R=-0.005 t=-0.07 -> reject
+[ 94] C-regime       mutate  skip climactic volume > 4.0 x median                           obj=  1.74 train n= 124 R=+0.163 | val n= 225 R=+0.014 t=+0.19 -> reject
+[ 95] C-regime       mutate  skip climactic volume > 6.0 x median                           obj=  1.89 train n= 125 R=+0.177 | val n= 226 R=+0.009 t=+0.12 -> reject
+[ 96] C-regime       mutate  skip quiet bars, volume < 0.8 x median                         obj=  1.13 train n=  99 R=+0.120 | val n= 204 R=+0.050 t=+0.64 -> reject
+[ 97] C-regime       mutate  skip quiet bars, volume < 1.2 x median                         obj=  2.42 train n=  59 R=+0.340 | val n= 145 R=+0.088 t=+0.93 -> ACCEPT
+[ 98] C-regime       mutate  volatility regime window 0.8-99.0                              obj=  2.42 train n=  59 R=+0.340 | val n= 140 R=+0.075 t=+0.78 -> reject
+[ 99] C-regime       mutate  volatility regime window 1.0-99.0                              obj=  1.65 train n=  53 R=+0.274 | val n= 117 R=+0.060 t=+0.58 -> reject
+[100] C-regime       mutate  volatility regime window 0.0-1.5                               obj=  1.65 train n=  46 R=+0.352 | val n= 126 R=+0.090 t=+0.85 -> reject
+[101] C-regime       mutate  volatility regime window 0.7-1.6                               obj=  1.98 train n=  52 R=+0.345 | val n= 133 R=+0.071 t=+0.70 -> reject
+[102] C-regime       mutate  skip after streaks longer than 3 candles                       obj=  2.42 train n=  59 R=+0.340 | val n= 143 R=+0.104 t=+1.10 -> reject
+[103] C-regime       mutate  skip after streaks longer than 4 candles                       obj=  2.42 train n=  59 R=+0.340 | val n= 145 R=+0.088 t=+0.93 -> reject
+[104] C-regime       mutate  skip after streaks longer than 6 candles                       obj=  2.42 train n=  59 R=+0.340 | val n= 145 R=+0.088 t=+0.93 -> reject
+[105] C-regime       mutate  skip signal bars wider than 1.5 ATR                            obj=  2.35 train n=  57 R=+0.353 | val n= 130 R=+0.100 t=+1.00 -> reject
+[106] C-regime       mutate  skip signal bars wider than 2.0 ATR                            obj=  2.36 train n=  59 R=+0.333 | val n= 141 R=+0.103 t=+1.07 -> reject
+[107] C-regime       mutate  skip signal bars wider than 3.0 ATR                            obj=  2.42 train n=  59 R=+0.340 | val n= 145 R=+0.088 t=+0.93 -> reject
+[108] C-regime       mutate  require signal bar >= 0.5 ATR                                  obj=  2.03 train n=  57 R=+0.301 | val n= 141 R=+0.079 t=+0.82 -> reject
+[109] C-regime       mutate  require signal bar >= 0.8 ATR                                  obj=  1.65 train n=  50 R=+0.303 | val n= 110 R=+0.060 t=+0.55 -> reject
+[110] C-regime       mutate  skip when |bollinger z| > 2.0                                  obj=  2.42 train n=  59 R=+0.340 | val n= 145 R=+0.088 t=+0.93 -> reject
+[111] C-regime       mutate  skip when |bollinger z| > 3.0                                  obj=  2.42 train n=  59 R=+0.340 | val n= 145 R=+0.088 t=+0.93 -> reject
+[112] D-panel        measure measure: deterministic layer alone (panel OFF) at this point   obj=  2.60 train n=  89 R=+0.298 | val n= 201 R=+0.141 t=+1.76 -> measured
+[113] D-panel        mutate  panel threshold 0.4                                            obj=  2.50 train n=  88 R=+0.289 | val n= 197 R=+0.153 t=+1.89 -> ACCEPT
+[114] D-panel        mutate  panel threshold 0.45                                           obj=  2.22 train n=  84 R=+0.264 | val n= 193 R=+0.140 t=+1.71 -> reject
+[115] D-panel        mutate  panel threshold 0.5                                            obj=  2.49 train n=  77 R=+0.310 | val n= 178 R=+0.149 t=+1.74 -> reject
+[116] D-panel        mutate  panel threshold 0.6                                            obj=  1.06 train n=  44 R=+0.234 | val n=  98 R=+0.065 t=+0.56 -> reject
+[117] D-panel        mutate  panel threshold 0.65                                           obj=  0.39 train n=  28 R=+0.175 | val n=  66 R=-0.016 t=-0.11 -> reject (too few train trades)
+[118] D-panel        mutate  panel threshold 0.7                                            obj=  0.03 train n=  10 R=+0.068 | val n=  23 R=-0.055 t=-0.22 -> reject (too few train trades)
+[119] D-panel        mutate  panel threshold 0.75                                           obj=  0.00 train n=   0 R=+0.000 | val n=   7 R=-0.170 t=-0.37 -> reject (too few train trades)
+[120] D-panel        mutate  no veto on action == skip                                      obj=  2.60 train n=  89 R=+0.298 | val n= 197 R=+0.153 t=+1.89 -> ACCEPT
+[121] D-panel        mutate  require action confidence >= 0.2                               obj=  2.34 train n=  86 R=+0.274 | val n= 194 R=+0.155 t=+1.90 -> reject
+[122] D-panel        mutate  require action confidence >= 0.4                               obj=  1.70 train n=  66 R=+0.229 | val n= 139 R=+0.199 t=+2.05 -> reject
+[123] D-panel        mutate  require action confidence >= 0.6                               obj=  0.55 train n=  22 R=+0.355 | val n=  41 R=+0.061 t=+0.32 -> reject (too few train trades)
+[124] D-panel        mutate  size by quality OFF                                            obj=  2.60 train n=  89 R=+0.298 | val n= 197 R=+0.153 t=+1.89 -> reject
+[125] D-panel        mutate  size by quality ON                                             obj=  2.60 train n=  89 R=+0.298 | val n= 197 R=+0.153 t=+1.89 -> reject
+[126] D-panel        mutate  panel weight w_setup = 0                                       obj=  2.60 train n=  89 R=+0.298 | val n= 200 R=+0.147 t=+1.83 -> reject
+[127] D-panel        mutate  panel weight w_setup = 2                                       obj=  2.35 train n=  85 R=+0.279 | val n= 195 R=+0.154 t=+1.89 -> reject
+[128] D-panel        mutate  panel weight w_regime = 0                                      obj=  2.52 train n=  87 R=+0.295 | val n= 197 R=+0.139 t=+1.71 -> reject
+[129] D-panel        mutate  panel weight w_regime = 2                                      obj=  2.42 train n=  87 R=+0.282 | val n= 195 R=+0.154 t=+1.89 -> reject
+[130] D-panel        mutate  panel weight w_htf = 0                                         obj=  2.49 train n=  77 R=+0.310 | val n= 180 R=+0.151 t=+1.78 -> reject
+[131] D-panel        mutate  panel weight w_htf = 2                                         obj=  2.60 train n=  89 R=+0.298 | val n= 200 R=+0.147 t=+1.83 -> reject
+[132] D-panel        mutate  panel weight w_exhaustion = 0                                  obj=  2.47 train n=  88 R=+0.285 | val n= 197 R=+0.152 t=+1.88 -> reject
+[133] D-panel        mutate  panel weight w_exhaustion = 2                                  obj=  2.56 train n=  87 R=+0.300 | val n= 196 R=+0.141 t=+1.74 -> reject
+[134] D-panel        mutate  panel weight w_cost = 0                                        obj=  2.60 train n=  89 R=+0.298 | val n= 199 R=+0.154 t=+1.90 -> reject
+[135] D-panel        mutate  panel weight w_cost = 2                                        obj=  2.35 train n=  85 R=+0.279 | val n= 195 R=+0.141 t=+1.73 -> reject
+[136] D-panel        mutate  panel weight w_quality = 0                                     obj=  2.60 train n=  89 R=+0.298 | val n= 200 R=+0.147 t=+1.83 -> reject
+[137] D-panel        mutate  panel weight w_quality = 2                                     obj=  2.52 train n=  87 R=+0.295 | val n= 195 R=+0.154 t=+1.89 -> reject
+[138] D-panel        mutate  panel: quality only                                            obj=  1.99 train n=  60 R=+0.278 | val n= 141 R=+0.146 t=+1.52 -> reject
+[139] D-panel        mutate  panel: setup_valid only                                        obj=  0.41 train n=  23 R=+0.232 | val n=  72 R=+0.079 t=+0.60 -> reject (too few train trades)
+[140] D-panel        mutate  panel: gate on p(take) instead of the weighted mix             obj=  0.99 train n=  29 R=+0.402 | val n=  77 R=+0.008 t=+0.06 -> reject (too few train trades)
+[141] D-panel        mutate  panel: weighted mix again                                      obj=  2.60 train n=  89 R=+0.298 | val n= 197 R=+0.153 t=+1.89 -> reject
+[142] D-panel        mutate  panel: require action == take                                  obj=  0.03 train n=   2 R=+0.741 | val n=  10 R=-0.292 t=-0.89 -> reject (too few train trades)
+[143] D-panel        mutate  panel: do not require action == take                           obj=  2.60 train n=  89 R=+0.298 | val n= 197 R=+0.153 t=+1.89 -> reject
+[144] D-panel        mutate  panel: stricter threshold for breakouts (+0.1)                 obj=  2.60 train n=  89 R=+0.298 | val n= 197 R=+0.153 t=+1.89 -> reject
+[145] D-panel        mutate  panel: looser threshold for pullbacks (-0.1)                   obj=  2.22 train n=  84 R=+0.264 | val n= 193 R=+0.140 t=+1.71 -> reject
+[146] D-panel        mutate  panel OFF: keep the deterministic layer alone if it beats the  obj=  2.60 train n=  89 R=+0.298 | val n= 201 R=+0.141 t=+1.76 -> reject
+[147] D-risk         mutate  cooldown 3 bars after each exit                                obj=  2.44 train n=  87 R=+0.284 | val n= 196 R=+0.146 t=+1.80 -> reject
+[148] D-risk         mutate  cooldown 6 bars after each exit                                obj=  2.47 train n=  87 R=+0.289 | val n= 191 R=+0.164 t=+2.01 -> reject
+[149] D-risk         mutate  cooldown 12 bars after each exit                               obj=  2.27 train n=  81 R=+0.276 | val n= 181 R=+0.151 t=+1.81 -> reject
+[150] D-risk         mutate  max 2 trades per coin per day                                  obj=  2.18 train n=  77 R=+0.264 | val n= 171 R=+0.122 t=+1.43 -> reject
+[151] D-risk         mutate  max 4 trades per coin per day                                  obj=  2.60 train n=  87 R=+0.300 | val n= 194 R=+0.149 t=+1.83 -> ACCEPT
+[152] D-risk         mutate  max 8 trades per coin per day                                  obj=  2.60 train n=  89 R=+0.298 | val n= 197 R=+0.153 t=+1.89 -> reject
+[153] E-direction    mutate  long only                                                      obj=  2.51 train n=  61 R=+0.341 | val n= 129 R=+0.149 t=+1.43 -> reject
+[154] E-direction    mutate  short only                                                     obj=  0.32 train n=  27 R=+0.156 | val n=  66 R=+0.132 t=+1.02 -> reject (too few train trades)
+[155] E-direction    mutate  both directions (restore)                                      obj=  2.60 train n=  87 R=+0.300 | val n= 194 R=+0.149 t=+1.83 -> reject
+[156] E-coins        mutate  drop BTC                                                       obj=  2.60 train n=  87 R=+0.300 | val n= 194 R=+0.149 t=+1.83 -> reject
+[157] E-coins        mutate  drop ETH                                                       obj=  2.44 train n=  81 R=+0.299 | val n= 193 R=+0.149 t=+1.81 -> reject
+[158] E-coins        mutate  drop ZEC                                                       obj=  2.69 train n=  77 R=+0.329 | val n= 158 R=+0.158 t=+1.75 -> ACCEPT
+[159] E-coins        mutate  drop HYPE                                                      obj=  2.69 train n=  77 R=+0.329 | val n= 151 R=+0.142 t=+1.52 -> reject
+[160] E-coins        mutate  drop NEAR                                                      obj=  2.99 train n=  69 R=+0.377 | val n= 119 R=+0.194 t=+1.88 -> ACCEPT
+[161] E-coins        mutate  drop SOL                                                       obj=  2.82 train n=  64 R=+0.373 | val n= 112 R=+0.202 t=+1.89 -> reject
+[162] E-coins        mutate  drop PUMP                                                      obj=  3.15 train n=  54 R=+0.487 | val n=  84 R=+0.214 t=+1.76 -> ACCEPT
+[163] E-coins        mutate  drop XRP                                                       obj=  2.54 train n=  44 R=+0.530 | val n=  70 R=+0.247 t=+1.85 -> reject
+[164] E-coins        mutate  drop ONDO                                                      obj=  1.56 train n=  40 R=+0.376 | val n=  63 R=+0.211 t=+1.51 -> reject
+[165] E-coins        mutate  drop ENA                                                       obj=  1.85 train n=  35 R=+0.519 | val n=  50 R=+0.192 t=+1.26 -> reject (too few train trades)
+[166] E-coins        mutate  only high-ATR coins (ZEC, NEAR, ENA, PUMP, HYPE, ONDO)         obj=  2.09 train n=  66 R=+0.290 | val n= 172 R=+0.160 t=+1.84 -> reject
+[167] E-coins        mutate  only majors (BTC, ETH, SOL, XRP)                               obj=  0.58 train n=  21 R=+0.331 | val n=  22 R=+0.064 t=+0.27 -> reject (too few train trades)
+[168] E-coins        mutate  all coins (restore)                                            obj=  2.60 train n=  87 R=+0.300 | val n= 194 R=+0.149 t=+1.83 -> reject
+[169] E-refine       mutate  re-sweep sp_sl_atr = 0.9                                       obj=  1.87 train n=  59 R=+0.514 | val n=  86 R=+0.349 t=+1.62 -> reject
+[170] E-refine       mutate  re-sweep sp_sl_atr = 1.1                                       obj=  2.49 train n=  56 R=+0.631 | val n=  85 R=+0.332 t=+1.76 -> reject
+[171] E-refine       mutate  re-sweep sp_sl_atr = 1.3                                       obj=  2.65 train n=  55 R=+0.612 | val n=  84 R=+0.321 t=+1.92 -> reject
+[172] E-refine       mutate  re-sweep sp_tp_atr = 1.4                                       obj=  1.97 train n=  56 R=+0.193 | val n=  85 R=+0.128 t=+1.51 -> reject
+[173] E-refine       mutate  re-sweep sp_tp_atr = 1.8                                       obj=  2.12 train n=  55 R=+0.244 | val n=  84 R=+0.164 t=+1.72 -> reject
+[174] E-refine       mutate  re-sweep sp_tp_atr = 2.2                                       obj=  2.69 train n=  55 R=+0.345 | val n=  84 R=+0.167 t=+1.55 -> reject
+[175] E-refine       mutate  re-sweep pp_threshold = 0.52                                   obj=  1.96 train n=  44 R=+0.417 | val n=  70 R=+0.174 t=+1.31 -> reject
+[176] E-refine       mutate  re-sweep pp_threshold = 0.58                                   obj=  2.00 train n=  37 R=+0.526 | val n=  47 R=+0.182 t=+1.14 -> reject (too few train trades)
+[177] E-refine       mutate  re-sweep sp_max_bars = 15                                      obj=  2.46 train n=  55 R=+0.360 | val n=  84 R=+0.196 t=+1.72 -> reject
+[178] E-refine       mutate  re-sweep sp_max_bars = 30                                      obj=  2.58 train n=  54 R=+0.420 | val n=  84 R=+0.186 t=+1.47 -> reject
+[179] E-robustness   measure robustness: sl_atr x 0.9                                       obj=  2.75 train n=  54 R=+0.478 | val n=  84 R=+0.262 t=+2.00 -> measured
+[180] E-robustness   measure robustness: sl_atr x 1.1                                       obj=  2.95 train n=  54 R=+0.426 | val n=  84 R=+0.163 t=+1.42 -> measured
+[181] E-robustness   measure robustness: tp_atr x 0.9                                       obj=  3.17 train n=  54 R=+0.467 | val n=  84 R=+0.228 t=+1.92 -> measured
+[182] E-robustness   measure robustness: tp_atr x 1.1                                       obj=  2.81 train n=  54 R=+0.457 | val n=  84 R=+0.246 t=+1.95 -> measured
+[183] E-robustness   measure robustness: max_bars x 0.8                                     obj=  2.90 train n=  54 R=+0.447 | val n=  84 R=+0.179 t=+1.52 -> measured
+[184] E-robustness   measure robustness: max_bars x 1.25                                    obj=  2.58 train n=  54 R=+0.420 | val n=  84 R=+0.186 t=+1.47 -> measured
+[185] E-robustness   measure robustness: panel threshold -0.05                              obj=  3.15 train n=  54 R=+0.487 | val n=  86 R=+0.214 t=+1.77 -> measured
+[186] E-robustness   measure robustness: panel threshold +0.05                              obj=  2.92 train n=  52 R=+0.480 | val n=  80 R=+0.187 t=+1.49 -> measured
+[187] E-walkforward  measure walk-forward: quarter 1 of the full period                     obj=  0.09 train n=   3 R=+0.730 | val n=   3 R=+0.730 t=+1.87 -> measured
+[188] E-walkforward  measure walk-forward: quarter 2 of the full period                     obj=  0.00 train n=   0 R=+0.000 | val n=   0 R=+0.000 t=+0.00 -> measured
+[189] E-walkforward  measure walk-forward: quarter 3 of the full period                     obj=  3.16 train n=  60 R=+0.423 | val n=  60 R=+0.423 t=+3.16 -> measured
+[190] E-walkforward  measure walk-forward: quarter 4 of the full period                     obj=  1.70 train n=  75 R=+0.222 | val n=  75 R=+0.222 t=+1.70 -> measured
+[191] E-ablation     measure ablation: final config WITHOUT panel                           obj=  3.15 train n=  54 R=+0.487 | val n=  87 R=+0.199 t=+1.66 -> measured
+[192] E-ablation     measure ablation: final config with the offline mock panel             obj=  3.15 train n=  54 R=+0.487 | val n=  87 R=+0.199 t=+1.66 -> measured
+[193] E-ablation     measure ablation: revert 'entry: resting limit at signal close (maker) obj=  2.91 train n=  55 R=+0.448 | val n=  87 R=+0.189 t=+1.59 -> measured
+[194] E-ablation     measure ablation: revert 'stop = 1.2 ATR'                              obj=  2.47 train n=  57 R=+0.661 | val n=  85 R=+0.284 t=+1.42 -> measured
+[195] E-ablation     measure ablation: revert 'stop = 1.4 ATR'                              obj=  2.47 train n=  57 R=+0.661 | val n=  85 R=+0.284 t=+1.42 -> measured
+[196] E-ablation     measure ablation: revert 'stop = 1.6 ATR'                              obj=  2.47 train n=  57 R=+0.661 | val n=  85 R=+0.284 t=+1.42 -> measured
+[197] E-ablation     measure ablation: revert 'stop = 2.0 ATR'                              obj=  2.47 train n=  57 R=+0.661 | val n=  85 R=+0.284 t=+1.42 -> measured
+[198] E-ablation     measure ablation: revert 'target = 2.5 ATR'                            obj=  2.22 train n=  56 R=+0.224 | val n=  85 R=+0.150 t=+1.74 -> measured
+[199] E-ablation     measure ablation: revert 'target = 3.0 ATR'                            obj=  2.22 train n=  56 R=+0.224 | val n=  85 R=+0.150 t=+1.74 -> measured
+[200] E-ablation     measure ablation: revert 'trade only when 1 ATR >= 1.0 x round-trip co obj= -1.65 train n= 213 R=-0.138 | val n= 240 R=-0.019 t=-0.26 -> measured
+{
+ "rounds": 200,
+ "accepted": 25,
+ "elapsed_s": 34,
+ "final_train": {
+  "n_trades": 54,
+  "win_rate": 0.6111111111111112,
+  "avg_r": 0.4865884168808223,
+  "expectancy_pct": 0.7469138145197743,
+  "profit_factor": 3.063924296533549,
+  "total_return_pct": 9.368930594563318,
+  "max_drawdown_pct": -1.0239521984982727,
+  "sharpe_trade": 3.284671735771436,
+  "avg_bars": 14.592592592592593,
+  "pct_target": 0.4444444444444444,
+  "pct_stop": 0.18518518518518517,
+  "trades_per_day": 0.8566140830175376,
+  "tstat": 3.5038023223376094
+ },
+ "final_val": {
+  "n_trades": 84,
+  "win_rate": 0.5833333333333334,
+  "avg_r": 0.21410325272215242,
+  "expectancy_pct": 0.36315954092918,
+  "profit_factor": 1.708525029346879,
+  "total_return_pct": 6.302341623583407,
+  "max_drawdown_pct": -2.1920594651793532,
+  "sharpe_trade": 1.7198488970484263,
+  "avg_bars": 13.607142857142858,
+  "pct_target": 0.36904761904761907,
+  "pct_stop": 0.36904761904761907,
+  "trades_per_day": 3.10919185687847,
+  "tstat": 1.7596475688469624
+ }
+}
