@@ -1,0 +1,13 @@
+model=jev cache_entries=0
+BTC    5m src=binance     bars= 25919 candidates=  6588 to_label=6588
+ETH    5m src=binance     bars= 25919 candidates=  6999 to_label=6999
+BTC    1m src=binance     bars= 30240 candidates=  5998 to_label=5998
+ETH    1m src=binance     bars= 30240 candidates=  6739 to_label=6739
+total to label: 26324  est_cost=1.38 USD
+  labelled 500/26324  11.3/s  stats={'calls': 499, 'cache_hits': 1, 'input_tokens': 614596, 'cost_usd': 0.0258}
+  labelled 1000/26324  11.6/s  stats={'calls': 998, 'cache_hits': 2, 'input_tokens': 1229961, 'cost_usd': 0.0517}
+  labelled 1500/26324  11.7/s  stats={'calls': 1497, 'cache_hits': 3, 'input_tokens': 1844572, 'cost_usd': 0.0775}
+ERROR ProxyError HTTPSConnectionPool(host='api.typesafe.ai', port=443): Max retries exceeded with url: /v1/systemone (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 502 Bad Gateway')))
+  labelled 2000/26324  11.6/s  stats={'calls': 1995, 'cache_hits': 5, 'input_tokens': 2458382, 'cost_usd': 0.1033}
+  labelled 2500/26324  11.6/s  stats={'calls': 2494, 'cache_hits': 6, 'input_tokens': 3068891, 'cost_usd': 0.1289}
+  labelled 3000/26324  11.7/s  stats={'calls': 2994, 'cache_hits': 6, 'input_tokens': 3680400, 'cost_usd': 0.1546}

@@ -23,8 +23,10 @@ def _f(x) -> float:
 
 
 def build_state(row: pd.Series, coin: str, interval: str, direction: int, setup: str,
-                sl_atr: float, tp_atr: float, spread_bps: float | None = None,
-                funding_rate: float | None = None) -> dict:
+                spread_bps: float | None = None, funding_rate: float | None = None) -> dict:
+    """The state is independent of the exit plan (stop / target) on purpose:
+    one Jev decision per candidate is reused by every exit configuration the
+    optimiser tries.  Cost efficiency is judged on one ATR of movement."""
     d = "long" if direction > 0 else "short"
     dist = _f(row["dist_vwap_atr"])
     rsi = _f(row["rsi"])
@@ -35,9 +37,8 @@ def build_state(row: pd.Series, coin: str, interval: str, direction: int, setup:
     pos = _f(row["pos_in_range20"])
     atr_pct = _f(row["atr_pct"])
     lw, uw, body = _f(row["lower_wick"]), _f(row["upper_wick"]), _f(row["body_ratio"])
-    rr = tp_atr / sl_atr if sl_atr else float("nan")
-    cost_bps = 2 * 4.5 + (spread_bps or 0.0)  # taker in + taker out + spread
-    tp_bps = tp_atr * atr_pct * 1e4 if not math.isnan(atr_pct) else float("nan")
+    cost_bps = 2 * 4.5 + (spread_bps or 0.0)  # taker in + taker out + spread, in bps
+    atr_bps = atr_pct * 1e4 if not math.isnan(atr_pct) else float("nan")
 
     candle = "neutral"
     if lw >= 0.4 and body < 0.4:
@@ -56,10 +57,9 @@ def build_state(row: pd.Series, coin: str, interval: str, direction: int, setup:
         "candidate": {
             "setup_type": setup,
             "direction": d,
-            "planned_stop": f"{sl_atr:g} ATR", "planned_target": f"{tp_atr:g} ATR",
-            "reward_to_risk": f"{rr:.2f}",
-            "target_vs_costs": bucket(tp_bps / cost_bps if cost_bps else float("nan"), [1.5, 3, 6],
-                                      ["target_barely_covers_costs", "target_small_vs_costs", "target_comfortable_vs_costs", "target_large_vs_costs"]),
+            "plan": "stop and target are fixed multiples of ATR; a typical target is about 1.5 ATR",
+            "one_atr_vs_round_trip_costs": bucket(atr_bps / cost_bps if cost_bps else float("nan"), [1.5, 3, 6],
+                                                  ["atr_barely_covers_costs", "atr_small_vs_costs", "atr_comfortable_vs_costs", "atr_large_vs_costs"]),
         },
         "trend": {
             "local_ema21_slope": trend_label(_f(row["ema21_slope"])),

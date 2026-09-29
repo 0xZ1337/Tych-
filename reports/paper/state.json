@@ -1,0 +1,69 @@
+{
+ "updated": "2026-09-29T03:51:40+00:00",
+ "equity": 10000.0,
+ "return_pct": 0.0,
+ "positions": {},
+ "n_signals": 0,
+ "n_taken": 0,
+ "n_closed": 0,
+ "model_stats": {
+  "calls": 0,
+  "cache_hits": 0,
+  "input_tokens": 0,
+  "cost_usd": 0.0
+ },
+ "interval": "5m",
+ "coins": [
+  "BTC",
+  "ETH",
+  "ZEC",
+  "HYPE",
+  "NEAR",
+  "SOL",
+  "PUMP",
+  "XRP",
+  "ONDO",
+  "ENA"
+ ],
+ "setup": {
+  "mr_enabled": true,
+  "mr_dist_atr": 2.0,
+  "mr_rsi_low": 30.0,
+  "mr_rsi_high": 70.0,
+  "mr_wick_min": 0.35,
+  "mr_vol_z_min": 1.0,
+  "mr_max_htf_slope": 0.8,
+  "pb_enabled": true,
+  "pb_min_htf_slope": 0.2,
+  "pb_rsi_lo": 38.0,
+  "pb_rsi_hi": 62.0,
+  "pb_touch_tol_atr": 0.15,
+  "bo_enabled": true,
+  "bo_vol_z_min": 1.5,
+  "bo_atr_regime_min": 0.9,
+  "bo_min_body": 0.5,
+  "sl_atr": 1.0,
+  "tp_atr": 1.5,
+  "max_bars": 24,
+  "sessions": [
+   "asia",
+   "europe",
+   "us",
+   "late"
+  ],
+  "entry_mode": "market"
+ },
+ "panel": {
+  "enabled": true,
+  "w_setup": 1.0,
+  "w_regime": 0.8,
+  "w_htf": 0.8,
+  "w_exhaustion": 0.4,
+  "w_cost": 0.6,
+  "w_quality": 1.2,
+  "threshold": 0.55,
+  "min_action_conf": 0.0,
+  "veto_skip": true,
+  "size_by_quality": true
+ }
+}

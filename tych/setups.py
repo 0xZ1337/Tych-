@@ -40,6 +40,7 @@ class SetupParams:
     max_bars: int = 24
     # global
     sessions: tuple = ("asia", "europe", "us", "late")
+    entry_mode: str = "market"    # execution style, see backtest.engine.CostModel
 
     def to_dict(self) -> dict:
         d = asdict(self)

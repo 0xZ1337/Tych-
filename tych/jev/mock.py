@@ -22,7 +22,7 @@ _VWAP_SCORE = {"extremely_below": -3, "far_below": -2, "below": -1, "near": 0, "
 _MOVE3 = {"sharp_drop": -2, "drop": -1, "sideways": 0, "rise": 1, "sharp_rise": 2, "unknown": 0}
 _VOL = {"very_quiet": 0, "quiet": 1, "normal": 2, "elevated": 3, "surge": 4, "climactic": 5, "unknown": 2}
 _REG = {"compressed": 0, "below_normal": 1, "normal": 2, "expanding": 3, "explosive": 4, "unknown": 2}
-_COST = {"target_barely_covers_costs": 0.1, "target_small_vs_costs": 0.35, "target_comfortable_vs_costs": 0.8, "target_large_vs_costs": 0.95, "unknown": 0.5}
+_COST = {"atr_barely_covers_costs": 0.1, "atr_small_vs_costs": 0.35, "atr_comfortable_vs_costs": 0.8, "atr_large_vs_costs": 0.95, "unknown": 0.5}
 
 
 def _sig(x: float, k: float = 1.4) -> float:
@@ -91,7 +91,7 @@ class MockJev:
         exh = 0.35 * abs(loc_ext) + 0.3 * abs(rsi) + 0.25 * min(streak, 6) / 2 + (0.8 if "rejection" in candle else 0.0) + 0.2 * abs(m3)
         me = _score_answer(["none", "modest", "extended", "climactic"], centre=min(3.0, exh * 0.9 - 0.3))
         # --- costs
-        ce = _COST[c["target_vs_costs"]]
+        ce = _COST[c["one_atr_vs_round_trip_costs"]]
         if act.get("spread") in ("wide", "very_wide"):
             ce *= 0.6
         # --- quality: aggregate

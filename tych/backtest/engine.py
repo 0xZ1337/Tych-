@@ -26,6 +26,7 @@ class CostModel:
     spread_bps: float = 1.0        # full spread; half is paid on each market fill
     slippage_bps: float = 0.5      # extra adverse move on market fills
     tp_taker: bool = False         # True = exits at target also pay taker (most conservative)
+    entry_mode: str = "market"     # "market": taker at next open; "limit": maker at signal close, must trade through
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -63,7 +64,18 @@ def simulate(df: pd.DataFrame, signals: pd.DataFrame, sl_atr: float, tp_atr: flo
                 i += 1
                 continue
         entry_bar = i + 1
-        entry = o[entry_bar] * (1 + d * (half_spread + slip))
+        if cost.entry_mode == "limit":
+            # resting limit at the signal bar close; filled only if the next bar trades THROUGH it
+            limit_px = c[i]
+            traded_through = (l[entry_bar] < limit_px * (1 - 1e-4)) if d > 0 else (h[entry_bar] > limit_px * (1 + 1e-4))
+            if not traded_through:
+                i += 1
+                continue
+            entry = limit_px
+            fee_in = cost.maker_fee
+        else:
+            entry = o[entry_bar] * (1 + d * (half_spread + slip))
+            fee_in = cost.taker_fee
         sl_dist = sl_atr * atr[i]
         tp_dist = tp_atr * atr[i]
         sl_px = entry - d * sl_dist
@@ -90,7 +102,6 @@ def simulate(df: pd.DataFrame, signals: pd.DataFrame, sl_atr: float, tp_atr: flo
             exit_bar = last
             exit_px = c[last] * (1 - d * (half_spread + slip))
             reason = "time"
-        fee_in = cost.taker_fee
         fee_out = cost.maker_fee if (reason == "target" and not cost.tp_taker) else cost.taker_fee
         gross = d * (exit_px - entry) / entry
         net = gross - fee_in - fee_out

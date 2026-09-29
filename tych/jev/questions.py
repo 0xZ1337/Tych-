@@ -50,8 +50,8 @@ def panel_questions(direction: str, setup: str) -> dict:
         },
         "cost_efficiency": {
             "type": "noul",
-            "instructions": "Based on `candidate.target_vs_costs` and `activity.spread`, is the planned target large enough relative to fees and spread?",
-            "criteria": {"true": "The target is comfortable or large versus costs.", "false": "The target barely covers, or is small versus, costs."},
+            "instructions": "Based on `candidate.one_atr_vs_round_trip_costs` and `activity.spread`, is one ATR of price movement large enough relative to fees and spread for a scalp to be worthwhile?",
+            "criteria": {"true": "One ATR is comfortable or large versus costs and the spread is tight or normal.", "false": "One ATR barely covers, or is small versus, costs, or the spread is wide."},
         },
         "quality": {
             "type": "score",

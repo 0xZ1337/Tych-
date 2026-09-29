@@ -55,7 +55,7 @@ def combine(answers: dict, setup: str, p: PanelParams) -> tuple[bool, float, flo
         go = False
     size = 1.0
     if p.size_by_quality:
-        size = {0: 0.0, 1: 0.5, 2: 0.75, 3: 1.0, 4: 1.25}.get(int(a["quality"]["score"]), 1.0)
+        size = {0: 0.0, 1: 0.5, 2: 0.75, 3: 1.0, 4: 1.25}.get(int(round(float(a["quality"]["score"]))), 1.0)
         if size == 0.0:
             go = False
     return go, score, size
