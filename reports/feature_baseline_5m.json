@@ -1,0 +1,22 @@
+{
+ "interval": "5m",
+ "n_train": 9407,
+ "n_val": 4062,
+ "features": 32,
+ "gross_win": {
+  "logistic_val_auc": 0.5247,
+  "logistic_train_auc": 0.5362,
+  "gboost_val_auc": 0.5201,
+  "gboost_train_auc": 0.7332,
+  "gboost_top_decile_val_gross_r": -0.121,
+  "val_gross_r_all": -0.118
+ },
+ "win": {
+  "logistic_val_auc": 0.5181,
+  "logistic_train_auc": 0.5406,
+  "gboost_val_auc": 0.5182,
+  "gboost_train_auc": 0.7435,
+  "gboost_top_decile_val_gross_r": -0.234,
+  "val_gross_r_all": -0.118
+ }
+}
