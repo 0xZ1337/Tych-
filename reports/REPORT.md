@@ -246,9 +246,11 @@ Ce qu'il faut lire honnêtement :
   +0,199), à seuil 0,40 sans veto, c'est-à-dire presque transparent. Le stand-in
   hors-ligne donne le même résultat. Cohérent avec l'AUC de 0,52.
 
-Cette configuration (`reports/config_research_5m.json`) a remplacé la #126 en
-paper trading live à partir de 05:40 UTC ; c'est son premier test réellement
-hors échantillon.
+Cette configuration (`reports/config_research_5m.json`) tourne en paper trading
+live depuis 10:36 UTC (le processus précédent, sur la #126, s'est arrêté vers
+05:40 UTC lors d'un redémarrage raté ; l'interruption est visible dans
+`reports/paper/decisions.jsonl`). C'est son premier test réellement hors
+échantillon.
 
 ### 5.3 M5 baseline avec le stand-in heuristique (10 coins, 90 jours)
 
@@ -259,20 +261,21 @@ est la couche déterministe, pas le panel.
 
 `scripts/paper.py` a tourné sur les 10 coins en M5 avec le vrai Jev de 03:53 à
 05:05 UTC avec les paramètres par défaut (4 candidats, 4 refus Jev, latence
-530-650 ms), puis a été relancé à 05:07 UTC avec la configuration #126
-(`reports/config_5m_iter126.json` : entrée limite, cible VWAP pour la réversion,
-seuil panel 0,624, veto `skip`, confiance ≥ 0,4). Chaque décision est
+530-650 ms), puis relancé à 05:07 UTC avec la configuration #126, interrompu vers 05:40 UTC,
+et relancé à 10:36 UTC avec la configuration issue des 200 tours
+(`reports/config_research_5m.json` : pullback seul, entrée limite, stop 2 / target
+3 ATR, 7 coins, seuil panel 0,40 sans veto). Chaque décision est
 journalisée avec l'état complet envoyé, les 7 réponses, la latence et le coût
 (`reports/paper/decisions.jsonl`, `trades.jsonl`, `state.json`, `errors.jsonl`).
 Aucun ordre n'est envoyé. Le processus vit tant que le conteneur de session vit ;
 pour un test de plusieurs jours, le lancer sur une machine persistante :
 
 ```bash
-python scripts/paper.py --config reports/config_5m_iter126.json
+python scripts/paper.py --config reports/config_research_5m.json
 ```
 
-Attendu à ~7 trades/jour sur 10 coins : il faut 2 à 4 semaines de paper
-trading pour distinguer +0,10 R de zéro (t ≈ 1 à 188 trades).
+Attendu à ~3 trades/jour sur 7 coins : il faut 4 à 6 semaines de paper trading
+(≈ 100 à 130 trades) pour distinguer +0,2 R de zéro avec t ≈ 2.
 
 ## 7. Coûts Jev de cette session
 

@@ -202,6 +202,8 @@ def main() -> None:
         cfg = json.loads(Path(args.config).read_text())
         sp, pp = SetupParams.from_dict(cfg["setup"]), PanelParams.from_dict(cfg["panel"])
         args.interval = cfg.get("interval", args.interval)
+    if sp.coins:
+        coins = [c for c in coins if c in sp.coins]
     cost = CostModel(spread_bps=1.0, entry_mode=sp.entry_mode)
     pt = PaperTrader(coins, args.interval, sp, pp, cost)
     print(f"paper trading {coins} on {args.interval} entry={sp.entry_mode} model={type(pt.model).__name__}", flush=True)
