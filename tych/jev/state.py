@@ -22,8 +22,23 @@ def _f(x) -> float:
     return x
 
 
+def describe_bar(r: pd.Series) -> str:
+    """One closed bar in words (no numbers the model would have to compare)."""
+    colour = "green" if r["close"] > r["open"] else "red"
+    body = bucket(_f(r["body_ratio"]), [0.2, 0.5, 0.8], ["doji", "small_body", "medium_body", "full_body"])
+    size = bucket(_f(r["range_atr"]), [0.5, 1.0, 2.0], ["tiny_range", "normal_range", "wide_range", "huge_range"])
+    wick = ""
+    if _f(r["lower_wick"]) >= 0.4:
+        wick = "_long_lower_wick"
+    elif _f(r["upper_wick"]) >= 0.4:
+        wick = "_long_upper_wick"
+    vol = bucket(_f(r["vol_z"]), [0.7, 1.5, 3.0], ["low_volume", "normal_volume", "high_volume", "volume_surge"])
+    return f"{colour}_{body}_{size}{wick}_{vol}"
+
+
 def build_state(row: pd.Series, coin: str, interval: str, direction: int, setup: str,
-                spread_bps: float | None = None, funding_rate: float | None = None) -> dict:
+                spread_bps: float | None = None, funding_rate: float | None = None,
+                recent: pd.DataFrame | None = None) -> dict:
     """The state is independent of the exit plan (stop / target) on purpose:
     one Jev decision per candidate is reused by every exit configuration the
     optimiser tries.  Cost efficiency is judged on one ATR of movement."""
@@ -85,6 +100,9 @@ def build_state(row: pd.Series, coin: str, interval: str, direction: int, setup:
             "session_utc": str(row["session"]),
         },
     }
+    if recent is not None and len(recent):
+        # oldest first, the signal bar last; a compact "tape" for pattern reading
+        state["recent_bars_oldest_to_newest"] = [describe_bar(r) for _, r in recent.iterrows()]
     if spread_bps is not None and not math.isnan(spread_bps):
         state["activity"]["spread"] = bucket(spread_bps, [0.5, 1.5, 4], ["tight", "normal", "wide", "very_wide"])
     if funding_rate is not None and not math.isnan(funding_rate):

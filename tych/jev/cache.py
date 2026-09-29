@@ -37,5 +37,13 @@ class PanelCache:
             pickle.dump(self.d, fh)
         tmp.replace(self.path)
 
+    def coverage(self, coin: str, interval: str):
+        """(first, last) labelled timestamp for a coin/interval, or None."""
+        ts = [k[2] for k in self.d if k[0] == coin and k[1] == interval]
+        if not ts:
+            return None
+        import pandas as pd
+        return pd.Timestamp(min(ts), unit="ms", tz="UTC"), pd.Timestamp(max(ts), unit="ms", tz="UTC")
+
     def __len__(self):
         return len(self.d)

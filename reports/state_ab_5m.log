@@ -1,0 +1,43 @@
+A/B on 1500 candidates
+ERROR HTTPSConnectionPool(host='api.typesafe.ai', port=443): Max retries exceeded with url: /v1/systemone (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 502 Bad Gateway')))
+{
+ "n": 1499,
+ "cost_usd": 0.0844,
+ "input_tokens_per_call": 1340.0553702468312,
+ "auc_gross_win": {
+  "base_setup_valid": 0.4964,
+  "base_quality": 0.5112,
+  "base_take": 0.5144,
+  "rich_setup_valid": 0.4959,
+  "rich_quality": 0.5137,
+  "rich_take": 0.5172
+ },
+ "auc_win": {
+  "base_setup_valid": 0.4917,
+  "base_quality": 0.5059,
+  "base_take": 0.5081,
+  "rich_setup_valid": 0.4919,
+  "rich_quality": 0.5089,
+  "rich_take": 0.5122
+ },
+ "rich_action_counts": {
+  "skip": 748,
+  "wait": 744,
+  "take": 7
+ },
+ "base_action_counts": {
+  "skip": 767,
+  "wait": 728,
+  "take": 4
+ },
+ "gross_r_by_rich_action": {
+  "skip": -0.122,
+  "take": -0.672,
+  "wait": -0.037
+ },
+ "gross_r_by_base_action": {
+  "skip": -0.122,
+  "take": -0.4,
+  "wait": -0.039
+ }
+}

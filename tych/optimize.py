@@ -65,6 +65,16 @@ def sample_params(rng: random.Random, base: SetupParams | None = None) -> tuple[
 class Runner:
     def __init__(self, feats: dict[str, tuple[pd.DataFrame, str]], interval: str, cache: PanelCache,
                  spreads: dict[str, float], split: float = 0.7, cost: CostModel | None = None):
+        # restrict every coin to the window the panel cache actually covers, so that
+        # "with panel" and "no panel" are compared on exactly the same bars
+        restricted = {}
+        for coin, (f, src) in feats.items():
+            cov = cache.coverage(coin, interval) if len(cache) else None
+            if cov is not None:
+                f = f[(f.index >= cov[0] - pd.Timedelta(days=1)) & (f.index <= cov[1] + pd.Timedelta(days=1))]
+            if len(f) > 300:
+                restricted[coin] = (f, src)
+        feats = restricted or feats
         self.feats = feats
         self.interval = interval
         self.cache = cache

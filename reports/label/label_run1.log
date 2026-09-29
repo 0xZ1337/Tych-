@@ -67,3 +67,6 @@ ERROR ReadTimeout HTTPSConnectionPool(host='api.typesafe.ai', port=443): Read ti
   labelled 24500/26324  11.9/s  stats={'calls': 24369, 'cache_hits': 135, 'input_tokens': 29905223, 'cost_usd': 1.256}
   labelled 25000/26324  12.0/s  stats={'calls': 24858, 'cache_hits': 146, 'input_tokens': 30505021, 'cost_usd': 1.2812}
   labelled 25500/26324  12.0/s  stats={'calls': 25355, 'cache_hits': 148, 'input_tokens': 31116841, 'cost_usd': 1.3069}
+ERROR ProxyError HTTPSConnectionPool(host='api.typesafe.ai', port=443): Max retries exceeded with url: /v1/systemone (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 502 Bad Gateway')))
+  labelled 26000/26324  12.0/s  stats={'calls': 25853, 'cache_hits': 153, 'input_tokens': 31729585, 'cost_usd': 1.3326}
+done 26311 in 2197s; cache=26311 stats={'calls': 26146, 'cache_hits': 165, 'input_tokens': 32090191, 'cost_usd': 1.3478}

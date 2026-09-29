@@ -1,0 +1,19 @@
+model=jev cache_entries=26311
+ZEC    5m src=binance     bars= 12961 candidates=  3878 to_label=3878
+HYPE   5m src=hyperliquid bars=  5036 candidates=  1380 to_label=1380
+NEAR   5m src=binance     bars= 12961 candidates=  3622 to_label=3622
+SOL    5m src=binance     bars= 12961 candidates=  3536 to_label=3536
+PUMP   5m src=binance     bars= 12961 candidates=  3648 to_label=3648
+XRP    5m src=binance     bars= 12961 candidates=  3659 to_label=3659
+ONDO   5m src=binance     bars= 12961 candidates=  3385 to_label=3385
+ENA    5m src=binance     bars= 12961 candidates=  3475 to_label=3475
+total to label: 26583  est_cost=1.40 USD
+  labelled 500/26583  11.8/s  stats={'calls': 505, 'cache_hits': 1, 'input_tokens': 621933, 'cost_usd': 0.0261}
+  labelled 1000/26583  12.2/s  stats={'calls': 1002, 'cache_hits': 5, 'input_tokens': 1233810, 'cost_usd': 0.0518}
+  labelled 1500/26583  12.3/s  stats={'calls': 1501, 'cache_hits': 5, 'input_tokens': 1846023, 'cost_usd': 0.0775}
+  labelled 2000/26583  12.4/s  stats={'calls': 1998, 'cache_hits': 9, 'input_tokens': 2453397, 'cost_usd': 0.103}
+  labelled 2500/26583  12.5/s  stats={'calls': 2495, 'cache_hits': 11, 'input_tokens': 3061124, 'cost_usd': 0.1286}
+  labelled 3000/26583  12.3/s  stats={'calls': 2992, 'cache_hits': 14, 'input_tokens': 3668525, 'cost_usd': 0.1541}
+ERROR ReadTimeout HTTPSConnectionPool(host='api.typesafe.ai', port=443): Read timed out. (read timeout=20.0)
+ERROR ProxyError HTTPSConnectionPool(host='api.typesafe.ai', port=443): Max retries exceeded with url: /v1/systemone (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 502 Bad Gateway')))
+  labelled 3500/26583  11.7/s  stats={'calls': 3486, 'cache_hits': 18, 'input_tokens': 4273202, 'cost_usd': 0.1795}
