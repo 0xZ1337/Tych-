@@ -10,3 +10,4 @@ data_cache/*.json
 data_cache/*.pkl
 reports/collector/
 
+reports/paper/state.json
